@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Waneeta Beach - Discussions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001e30",
+                    "inverse-primary": "#9dccf3",
+                    "secondary": "#126a63",
+                    "primary-fixed": "#cbe6ff",
+                    "surface-container-low": "#f2f4f4",
+                    "secondary-fixed-dim": "#88d4cb",
+                    "surface-bright": "#f8fafa",
+                    "surface-tint": "#336385",
+                    "on-background": "#191c1d",
+                    "inverse-surface": "#2e3131",
+                    "surface-container": "#eceeee",
+                    "tertiary-fixed-dim": "#ffb3ac",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#084364",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#ffbdb7",
+                    "on-surface-variant": "#41474e",
+                    "surface-container-high": "#e6e8e9",
+                    "on-surface": "#191c1d",
+                    "inverse-on-surface": "#eff1f1",
+                    "surface-variant": "#e1e3e3",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#9dccf3",
+                    "secondary-container": "#a4f1e7",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c1c7ce",
+                    "surface-dim": "#d8dada",
+                    "tertiary": "#6f2824",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "on-tertiary-fixed-variant": "#782f2b",
+                    "on-secondary-container": "#1c7069",
+                    "on-primary-fixed-variant": "#154b6c",
+                    "tertiary-fixed": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#3e0405",
+                    "surface-container-highest": "#e1e3e3",
+                    "secondary-fixed": "#a4f1e7",
+                    "primary-container": "#2a5b7d",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#8d3f39",
+                    "on-secondary-fixed": "#00201d",
+                    "on-primary-container": "#a4d2f9",
+                    "outline": "#72787e",
+                    "surface": "#f8fafa",
+                    "background": "#f8fafa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "unit": "8px",
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "body-md": [
+                            "Libre Caslon Text"
+                    ],
+                    "body-lg": [
+                            "Libre Caslon Text"
+                    ],
+                    "display-lg": [
+                            "Libre Caslon Text"
+                    ],
+                    "headline-md": [
+                            "Libre Caslon Text"
+                    ],
+                    "display-lg-mobile": [
+                            "Libre Caslon Text"
+                    ],
+                    "label-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md-mobile": [
+                            "Libre Caslon Text"
+                    ]
+            },
+            "fontSize": {
+                    "body-md": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "20px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "44px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto bg-surface/80 backdrop-blur-md shadow-[0_4px_20px_0_rgba(42,91,125,0.08)]">
+<div class="flex items-center gap-6">
+<span class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tight">Waneeta Beach</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">History</a>
+<a class="text-primary font-bold border-b-2 border-secondary pb-1 font-body-md text-body-md" href="#">Members</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center min-h-[48px] px-6 rounded-full bg-primary text-on-primary font-label-sm text-label-sm hover:opacity-80 transition-opacity duration-200">
+                Login
+            </button>
+<button class="md:hidden flex items-center justify-center w-[48px] h-[48px] rounded-full text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-[120px] pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+<div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4">Discussions</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Connect with neighbors, discuss community updates, and plan for the season ahead.</p>
+</div>
+<button class="flex items-center justify-center gap-2 min-h-[48px] px-8 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm hover:opacity-80 transition-opacity duration-200 shadow-[0_4px_20px_0_rgba(42,91,125,0.08)] w-full md:w-auto">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">add</span>
+                New Thread
+            </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Sidebar / Categories -->
+<aside class="lg:col-span-3">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_0_rgba(42,91,125,0.05)] sticky top-[120px]">
+<h2 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-6">Categories</h2>
+<ul class="space-y-2">
+<li>
+<button class="w-full flex items-center justify-between p-3 rounded-lg bg-primary-container/10 text-primary font-body-md text-body-md transition-colors min-h-[48px]">
+<span>All Discussions</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded-full font-label-sm text-[12px]">42</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low text-on-surface font-body-md text-body-md transition-colors min-h-[48px]">
+<span>Road &amp; Maintenance</span>
+<span class="text-on-surface-variant font-label-sm text-[12px]">15</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low text-on-surface font-body-md text-body-md transition-colors min-h-[48px]">
+<span>Events</span>
+<span class="text-on-surface-variant font-label-sm text-[12px]">8</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low text-on-surface font-body-md text-body-md transition-colors min-h-[48px]">
+<span>Snow Removal</span>
+<span class="text-on-surface-variant font-label-sm text-[12px]">12</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low text-on-surface font-body-md text-body-md transition-colors min-h-[48px]">
+<span>General</span>
+<span class="text-on-surface-variant font-label-sm text-[12px]">7</span>
+</button>
+</li>
+</ul>
+</div>
+</aside>
+<!-- Discussion List -->
+<div class="lg:col-span-9 space-y-4">
+<!-- Search & Filter -->
+<div class="flex flex-col sm:flex-row gap-4 mb-6">
+<div class="relative flex-grow">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 min-h-[48px] rounded-lg border border-outline-variant bg-surface-container-lowest focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-body-md outline-none" placeholder="Search discussions..." type="text"/>
+</div>
+<button class="flex items-center justify-center gap-2 min-h-[48px] px-6 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+                        Sort: Recent
+                    </button>
+</div>
+<!-- List Items -->
+<!-- Item 1 -->
+<a class="block bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_0_rgba(42,91,125,0.05)] hover:shadow-[0_8px_30px_0_rgba(42,91,125,0.08)] transition-all duration-300 border border-transparent hover:border-primary/10 group" href="#">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-3 py-1 bg-secondary/10 text-secondary font-label-sm text-[12px] rounded-full uppercase tracking-wider">Road &amp; Maintenance</span>
+<span class="text-on-surface-variant font-label-sm text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    2 hours ago
+                                </span>
+</div>
+<h3 class="font-headline-md-mobile text-headline-md-mobile md:text-[28px] md:leading-[36px] text-primary group-hover:text-secondary transition-colors mb-2">Pothole Repair Schedule for North Ridge</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Has anyone received the updated timeline for the road repairs on North Ridge? The last update mentioned mid-month, but we haven't seen any equipment yet.</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm text-label-sm">
+                                    ES
+                                </div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">Eleanor Smith</p>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-4 sm:gap-2 pt-4 sm:pt-0 border-t sm:border-t-0 border-outline-variant/30">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">forum</span>
+<span class="font-label-sm text-label-sm">14 replies</span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-[12px]">
+                                Last activity: 10 mins ago
+                            </div>
+</div>
+</div>
+</a>
+<!-- Item 2 -->
+<a class="block bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_0_rgba(42,91,125,0.05)] hover:shadow-[0_8px_30px_0_rgba(42,91,125,0.08)] transition-all duration-300 border border-transparent hover:border-primary/10 group" href="#">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary font-label-sm text-[12px] rounded-full uppercase tracking-wider">Events</span>
+<span class="text-on-surface-variant font-label-sm text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    Yesterday
+                                </span>
+</div>
+<h3 class="font-headline-md-mobile text-headline-md-mobile md:text-[28px] md:leading-[36px] text-primary group-hover:text-secondary transition-colors mb-2">End of Summer Picnic Planning Committee</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Looking for volunteers to help organize this year's community picnic at the pavilion. We need help with setup, food coordination, and cleanup.</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-label-sm">
+                                    JM
+                                </div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">John Miller</p>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-4 sm:gap-2 pt-4 sm:pt-0 border-t sm:border-t-0 border-outline-variant/30">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">forum</span>
+<span class="font-label-sm text-label-sm">8 replies</span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-[12px]">
+                                Last activity: 2 hours ago
+                            </div>
+</div>
+</div>
+</a>
+<!-- Item 3 -->
+<a class="block bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_0_rgba(42,91,125,0.05)] hover:shadow-[0_8px_30px_0_rgba(42,91,125,0.08)] transition-all duration-300 border border-transparent hover:border-primary/10 group" href="#">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-2">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant font-label-sm text-[12px] rounded-full uppercase tracking-wider">General</span>
+<span class="text-on-surface-variant font-label-sm text-[12px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    3 days ago
+                                </span>
+</div>
+<h3 class="font-headline-md-mobile text-headline-md-mobile md:text-[28px] md:leading-[36px] text-primary group-hover:text-secondary transition-colors mb-2">Has anyone seen a stray golden retriever?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Our dog Buster got out of the yard near the south entrance. He's very friendly and wearing a blue collar with tags.</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-tint text-on-primary flex items-center justify-center font-label-sm text-label-sm">
+                                    MJ
+                                </div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface">Mary Johnson</p>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-4 sm:gap-2 pt-4 sm:pt-0 border-t sm:border-t-0 border-outline-variant/30">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">forum</span>
+<span class="font-label-sm text-label-sm">22 replies</span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-[12px]">
+                                Last activity: Yesterday
+                            </div>
+</div>
+</div>
+</a>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-display-lg text-headline-md text-primary">Waneeta Beach</span>
+<p class="font-label-sm text-label-sm md:text-body-md text-on-surface-variant">© 2024 Waneeta Beach Community. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center md:justify-end gap-6">
+<a class="font-label-sm text-label-sm md:text-body-md text-on-surface-variant hover:text-primary underline transition-all focus:ring-2 focus:ring-secondary focus:outline-none" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm md:text-body-md text-on-surface-variant hover:text-primary underline transition-all focus:ring-2 focus:ring-secondary focus:outline-none" href="#">Contact Us</a>
+<a class="font-label-sm text-label-sm md:text-body-md text-on-surface-variant hover:text-primary underline transition-all focus:ring-2 focus:ring-secondary focus:outline-none" href="#">Beach Rules</a>
+<a class="font-label-sm text-label-sm md:text-body-md text-on-surface-variant hover:text-primary underline transition-all focus:ring-2 focus:ring-secondary focus:outline-none" href="#">Emergency Info</a>
+</div>
+</footer>
+</body></html>

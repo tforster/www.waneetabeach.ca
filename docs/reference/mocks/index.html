@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Waneeta Beach</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#001e30",
+                        "inverse-primary": "#9dccf3",
+                        "secondary": "#126a63",
+                        "primary-fixed": "#cbe6ff",
+                        "surface-container-low": "#f2f4f4",
+                        "secondary-fixed-dim": "#88d4cb",
+                        "surface-bright": "#f8fafa",
+                        "surface-tint": "#336385",
+                        "on-background": "#191c1d",
+                        "inverse-surface": "#2e3131",
+                        "surface-container": "#eceeee",
+                        "tertiary-fixed-dim": "#ffb3ac",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#084364",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffbdb7",
+                        "on-surface-variant": "#41474e",
+                        "surface-container-high": "#e6e8e9",
+                        "on-surface": "#191c1d",
+                        "inverse-on-surface": "#eff1f1",
+                        "surface-variant": "#e1e3e3",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#9dccf3",
+                        "secondary-container": "#a4f1e7",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c1c7ce",
+                        "surface-dim": "#d8dada",
+                        "tertiary": "#6f2824",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "on-tertiary-fixed-variant": "#782f2b",
+                        "on-secondary-container": "#1c7069",
+                        "on-primary-fixed-variant": "#154b6c",
+                        "tertiary-fixed": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#3e0405",
+                        "surface-container-highest": "#e1e3e3",
+                        "secondary-fixed": "#a4f1e7",
+                        "primary-container": "#2a5b7d",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#8d3f39",
+                        "on-secondary-fixed": "#00201d",
+                        "on-primary-container": "#a4d2f9",
+                        "outline": "#72787e",
+                        "surface": "#f8fafa",
+                        "background": "#f8fafa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "touch-target-min": "48px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Libre Caslon Text"],
+                        "body-lg": ["Libre Caslon Text"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "display-lg-mobile": ["Libre Caslon Text"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-md-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "body-md": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-lg": ["20px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "44px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-surface-container/80 backdrop-blur-md shadow-[0_4px_20px_0_rgba(42,91,125,0.08)] fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary dark:text-primary-fixed-dim tracking-tight hover:opacity-80 transition-opacity duration-200" href="#">
+            Waneeta Beach
+        </a>
+<div class="hidden md:flex items-center gap-gutter">
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-secondary dark:border-secondary-fixed-dim pb-1 hover:opacity-80 transition-opacity duration-200" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80 transition-opacity duration-200" href="#">History</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors hover:opacity-80 transition-opacity duration-200" href="#">Members</a>
+</div>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-6 py-2 rounded-full min-h-touch-target-min hover:opacity-80 transition-opacity duration-200 hidden md:block">
+            Login
+        </button>
+<!-- Mobile Menu Icon (Placeholder) -->
+<button class="md:hidden text-primary p-2 min-h-touch-target-min min-w-touch-target-min flex items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[88px]"> <!-- Padding top to account for fixed nav -->
+<!-- Hero Section with Uploaded Image -->
+<section class="relative h-[60vh] min-h-[400px] flex items-center justify-center" style="background-image: url('https://lh3.googleusercontent.com/aida/ADBb0uhV5KjkyEMuUzsl-tdYL-1sLjMfQNmlk4P5-rG_h8u2sTiNnq7RNeJ5SPzSlV1o84URoUCxzH1_THARAYBN8W-NzIf5An0NR5OpcH2OiScmbaDRlcXOP5BGowjp_DhoqWYeFTOx40mgtcJKg9jJy_nWWA6phSSKFO3lwZdwBcvoFJPxZERvVf45oiRd952_0fZQHhb8rMJD1UZ-tMay5Sw6SEHXDr1Oeq8fmBllKdc1dzgQ0xz0vstuX6s'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-primary/30"></div> <!-- Dark overlay for text readability -->
+<div class="relative z-10 text-center px-margin-mobile max-w-container-max mx-auto">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-4 tracking-tight drop-shadow-lg">Welcome to Waneeta Beach</h1>
+<p class="font-body-lg text-body-lg text-white/90 max-w-2xl mx-auto drop-shadow-md">A serene coastal community on the shores of Lake Erie.</p>
+</div>
+</section>
+<!-- Container for remaining content -->
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 flex flex-col gap-[64px] md:gap-[96px]">
+<!-- Community Notice Section (High Contrast) -->
+<section class="bg-surface-container-lowest border-l-4 border-error p-8 rounded-lg shadow-[0_4px_20px_0_rgba(42,91,125,0.08)] flex flex-col md:flex-row items-start md:items-center gap-6">
+<div class="bg-error/10 text-error p-4 rounded-full flex-shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-error/10 text-error px-3 py-1 rounded-full font-label-sm text-[12px] uppercase tracking-wider">Notice</span>
+<h2 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary">Community Notice</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Please observe the strict <strong>15 km/h speed limit</strong> on all community roads to ensure the safety of pedestrians, pets, and children playing near the shoreline.
+                    </p>
+</div>
+</section>
+<!-- Quick Links (Bento Grid Style) -->
+<section>
+<h2 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary mb-8 border-b border-surface-variant pb-4">Explore Waneeta</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- History Card -->
+<a class="group block h-full" href="#">
+<article class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_20px_0_rgba(42,91,125,0.08)] h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_8px_30px_0_rgba(42,91,125,0.12)]">
+<div class="bg-primary-container/10 w-12 h-12 rounded-full flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<h3 class="font-headline-md text-[24px] text-primary mb-3">History</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                                Discover the rich heritage of our community, from its founding days to present.
+                            </p>
+<div class="mt-6 flex items-center text-secondary font-label-sm text-label-sm group-hover:translate-x-2 transition-transform duration-300">
+                                Read more <span class="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
+</div>
+</article>
+</a>
+<!-- Weather Card -->
+<a class="group block h-full" href="#">
+<article class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_20px_0_rgba(42,91,125,0.08)] h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_8px_30px_0_rgba(42,91,125,0.12)]">
+<div class="bg-secondary/10 w-12 h-12 rounded-full flex items-center justify-center mb-6 text-secondary">
+<span class="material-symbols-outlined">partly_cloudy_day</span>
+</div>
+<h3 class="font-headline-md text-[24px] text-primary mb-3">Weather</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                                Check the latest local forecasts and shoreline conditions before heading out.
+                            </p>
+<div class="mt-6 flex items-center text-secondary font-label-sm text-label-sm group-hover:translate-x-2 transition-transform duration-300">
+                                View forecast <span class="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
+</div>
+</article>
+</a>
+<!-- Catfish Creek Reports Card -->
+<a class="group block h-full" href="#">
+<article class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_4px_20px_0_rgba(42,91,125,0.08)] h-full flex flex-col transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_8px_30px_0_rgba(42,91,125,0.12)]">
+<div class="bg-tertiary-container/10 w-12 h-12 rounded-full flex items-center justify-center mb-6 text-tertiary">
+<span class="material-symbols-outlined">water</span>
+</div>
+<h3 class="font-headline-md text-[24px] text-primary mb-3">Catfish Creek Reports</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">
+                                View recent conservation authority updates and water level monitoring.
+                            </p>
+<div class="mt-6 flex items-center text-secondary font-label-sm text-label-sm group-hover:translate-x-2 transition-transform duration-300">
+                                Access reports <span class="material-symbols-outlined ml-1 text-[18px]">arrow_forward</span>
+</div>
+</article>
+</a>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant dark:border-outline w-full py-12 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter mt-auto">
+<div class="font-display-lg text-headline-md text-primary dark:text-primary-fixed-dim">
+            Waneeta Beach
+        </div>
+<div class="flex flex-wrap justify-center md:justify-end gap-6 font-label-sm text-label-sm md:text-body-md text-on-surface-variant dark:text-surface-variant">
+<a class="hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all focus:ring-2 focus:ring-secondary focus:outline-none" href="#">Privacy Policy</a>
+<a class="hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all focus:ring-2 focus:ring-secondary focus:outline-none" href="#">Contact Us</a>
+<a class="hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all focus:ring-2 focus:ring-secondary focus:outline-none" href="#">Beach Rules</a>
+<a class="hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all focus:ring-2 focus:ring-secondary focus:outline-none" href="#">Emergency Info</a>
+</div>
+<div class="font-label-sm text-label-sm md:text-body-md text-on-surface-variant dark:text-surface-variant mt-4 md:mt-0 text-center md:text-left w-full md:w-auto">
+            © 2024 Waneeta Beach Community. All rights reserved.
+        </div>
+</footer>
+</body></html>

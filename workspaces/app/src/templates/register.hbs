@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> components/head.hbs}}
+  </head>
+  <body class="register-page">
+    {{> components/header.hbs}}
+    <main class="container register-container">
+      <article>
+        <hgroup>
+          <h1>Create your account</h1>
+          <p>Complete your Waneeta Beach member registration</p>
+        </hgroup>
+
+        <div id="token-error" hidden>
+          <p role="alert">This invite link is invalid or has expired. Please contact the site administrator for a new one.</p>
+        </div>
+
+        <form id="register-form" hidden>
+          <label for="name">
+            Full name
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </label>
+          <label for="email">
+            Email address
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </label>
+          <label for="password">
+            Password
+            <input type="password" id="password" name="password" required autocomplete="new-password" minlength="8">
+          </label>
+          <label for="confirm">
+            Confirm password
+            <input type="password" id="confirm" name="confirm" required autocomplete="new-password">
+          </label>
+          <p id="password-mismatch" role="alert" hidden>Passwords do not match.</p>
+          <button type="submit">Create account</button>
+        </form>
+      </article>
+    </main>
+    {{> components/footer.hbs}}
+  </body>
+</html>

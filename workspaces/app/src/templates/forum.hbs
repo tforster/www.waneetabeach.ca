@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> components/head.hbs}}
+    <script type="module" src="/forum.js" defer></script>
+  </head>
+  <body class="forum-page">
+    {{> components/header.hbs}}
+
+    <main class="container">
+
+      <!-- Thread list view (shown by default) -->
+      <section id="thread-list">
+        <hgroup>
+          <h1>Members Portal</h1>
+          <p>Community discussion board</p>
+        </hgroup>
+
+        <!-- Category filter — populated by JS -->
+        <nav id="category-filter" aria-label="Filter by category"></nav>
+
+        <!-- Thread table — populated by JS -->
+        <figure>
+          <table role="grid">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Replies</th>
+                <th>Last activity</th>
+              </tr>
+            </thead>
+            <tbody id="thread-rows">
+              <tr><td colspan="5" aria-busy="true">Loading&hellip;</td></tr>
+            </tbody>
+          </table>
+        </figure>
+
+        <!-- New thread form -->
+        <details>
+          <summary>Start a new thread</summary>
+          <form id="new-thread-form">
+            <label for="new-thread-category">
+              Category
+              <select id="new-thread-category" name="category_id" required></select>
+            </label>
+            <label for="new-thread-title">
+              Title
+              <input type="text" id="new-thread-title" name="title" required maxlength="200">
+            </label>
+            <label for="new-thread-body">
+              Message
+              <textarea id="new-thread-body" name="body" required rows="5"></textarea>
+            </label>
+            <button type="submit">Post thread</button>
+          </form>
+        </details>
+      </section>
+
+      <!-- Thread detail view (hidden until a thread is selected) -->
+      <section id="thread-detail" hidden>
+        <nav aria-label="Breadcrumb">
+          <button id="back-to-list" class="outline">
+            <span class="material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_back</span>
+            Back to threads
+          </button>
+        </nav>
+        <hgroup>
+          <h2 id="thread-title"></h2>
+          <p id="thread-meta"></p>
+        </hgroup>
+        <div id="thread-posts"></div>
+
+        <!-- Reply form -->
+        <form id="reply-form">
+          <label for="reply-body">
+            Reply
+            <textarea id="reply-body" name="body" required rows="4"></textarea>
+          </label>
+          <button type="submit">Post reply</button>
+        </form>
+      </section>
+
+    </main>
+
+    {{> components/footer.hbs}}
+  </body>
+</html>

@@ -1,0 +1,66 @@
+{
+  "name": "www.waneetabeach.ca",
+  "version": "0.1.0",
+  "description": "A Cloudflare-native community website for Waneeta Beach — public history and local information alongside a private members portal for a small Lake Erie cottage community.",
+  "license": "MIT",
+  "author": "Troy Forster",
+  "contributors": [
+    {
+      "email": "troy.forster@gmail.com",
+      "name": "Troy Forster",
+      "url": "https://www.tforster.com"
+    }
+  ],
+  "workspaces": [
+    "workspaces/app",
+    "workspaces/api",
+    "workspaces/auth"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "node ./devops/build.js",
+    "deploy": "wrangler publish",
+    "serve": "npx wrangler dev workspaces/app/dist",
+    "typecheck": "tsc --project jsconfig.json",
+    "test": "node --no-warnings=ExperimentalWarning --test",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20251205.0",
+    "@eslint/compat": "^2.0.0",
+    "@eslint/css": "^0.14.1",
+    "@eslint/js": "^9.39.1",
+    "@eslint/json": "^0.14.0",
+    "@eslint/markdown": "^7.5.1",
+    "@html-eslint/eslint-plugin": "^0.50.0",
+    "@html-eslint/parser": "^0.50.0",
+    "@playwright/test": "^1.57.0",
+    "@tforster/gilbert": "^1.0.0-rc.4",
+    "@tforster/gilbert-file": "^1.0.0-rc.4",
+    "@tforster/gilbert-fs": "^1.0.0-rc.4",
+    "@types/service-worker-mock": "^2.0.4",
+    "chokidar": "^5.0.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-html": "^8.1.3",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsonc": "^2.21.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-yml": "^1.19.0",
+    "globals": "^16.5.0",
+    "oxfmt": "^0.49.0",
+    "oxlint": "^1.64.0",
+    "prettier": "^3.7.4",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.53.0",
+    "yaml-eslint-parser": "^1.3.2",
+    "z-schema": "^6.0.2"
+  },
+  "dependencies": {
+    "better-auth": "^1.6.10",
+    "itty-router": "^5.0.23"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "waneetabeach-ca",
+  "main": "./src/index.js",
+  "compatibility_date": "2025-05-01",
+  "assets": {
+    "directory": "../app/dist",
+    "not_found_handling": "404-page"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "waneetabeach",
+      "database_id": "local-dev-placeholder",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": ["no-reply@waneetabeach.ca"]
+    }
+  ],
+  "vars": {
+    "FROM_ADDRESS": "no-reply@waneetabeach.ca"
+  },
+  "services": [
+    {
+      "binding": "AUTH_SERVICE",
+      "service": "waneetabeach-auth"
+    }
+  ]
+}

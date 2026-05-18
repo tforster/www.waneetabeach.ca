@@ -1,0 +1,507 @@
+/* ============================================================
+   Lake Erie Shore Design System — Waneeta Beach
+   Pico CSS classless v2 base + custom property overrides
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. Design tokens
+   ------------------------------------------------------------ */
+:root {
+  /* Colour palette */
+  --color-primary:              #005d90;
+  --color-on-primary:           #ffffff;
+  --color-primary-container:    #0077b6;
+  --color-on-primary-container: #f3f7ff;
+  --color-secondary:            #785a00;
+  --color-on-secondary:         #ffffff;
+  --color-secondary-container:  #ffc300;
+  --color-on-secondary-container: #6d5200;
+  --color-tertiary:             #405982;
+  --color-on-tertiary:          #ffffff;
+  --color-tertiary-container:   #59729c;
+  --color-on-tertiary-container:#f6f7ff;
+  --color-surface:              #f7f9fb;
+  --color-surface-low:          #f2f4f6;
+  --color-surface-container:    #eceef0;
+  --color-surface-white:        #ffffff;
+  --color-on-surface:           #191c1e;
+  --color-on-surface-variant:   #404850;
+  --color-outline:              #707881;
+  --color-outline-variant:      #bfc7d1;
+  --color-error:                #ba1a1a;
+  --color-background:           #f7f9fb;
+
+  /* Typography */
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-sans:  'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Spacing (8px base unit) */
+  --space-1:  8px;
+  --space-2:  16px;
+  --space-3:  24px;
+  --space-4:  32px;
+  --space-5:  40px;
+  --space-6:  48px;
+  --space-8:  64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --container-max:  1200px;
+  --margin-mobile:  16px;
+  --margin-desktop: 48px;
+  --touch-target:   48px;
+
+  /* Elevation — soft blue-tinted ambient shadows */
+  --shadow-sm: 0 4px 20px 0 rgba(0, 33, 71, 0.08);
+  --shadow-md: 0 8px 30px 0 rgba(0, 33, 71, 0.12);
+
+  /* Border radius */
+  --radius-sm:   0.125rem;
+  --radius-md:   0.25rem;
+  --radius-lg:   0.5rem;
+  --radius-xl:   0.75rem;
+  --radius-full: 9999px;
+}
+
+/* ------------------------------------------------------------
+   2. Pico CSS variable overrides
+   ------------------------------------------------------------ */
+:root {
+  /* Body text is Plus Jakarta Sans — clean, readable for all ages */
+  --pico-font-family:                var(--font-sans);
+  --pico-font-size:                  18px;
+  --pico-line-height:                1.55;
+  --pico-color:                      var(--color-on-surface);
+  --pico-background-color:           var(--color-background);
+  --pico-primary:                    var(--color-primary);
+  --pico-primary-hover:              var(--color-primary-container);
+  --pico-primary-focus:              rgba(0, 93, 144, 0.25);
+  --pico-primary-inverse:            var(--color-on-primary);
+  --pico-secondary:                  var(--color-secondary);
+  --pico-secondary-hover:            #5e4700;
+  --pico-secondary-focus:            rgba(120, 90, 0, 0.25);
+  --pico-secondary-inverse:          var(--color-on-secondary);
+  --pico-border-radius:              var(--radius-md);
+  --pico-card-background-color:      var(--color-surface-white);
+  --pico-card-border-color:          transparent;
+  --pico-card-box-shadow:            var(--shadow-sm);
+  --pico-card-sectioning-background-color: var(--color-surface-low);
+  --pico-form-element-border-color:  var(--color-outline-variant);
+  --pico-form-element-focus-color:   var(--color-primary);
+  --pico-container-max-width:        var(--container-max);
+  --pico-nav-link-spacing-vertical:  0.75rem;
+  --pico-nav-link-spacing-horizontal:1rem;
+}
+
+/* ------------------------------------------------------------
+   3. Base — headings use serif, body uses sans
+   ------------------------------------------------------------ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3rem);   font-weight: 700; line-height: 1.15; }
+h2 { font-size: clamp(1.25rem, 3vw, 1.5rem); font-weight: 600; line-height: 1.35; }
+h3 { font-size: 1.125rem; font-weight: 600; }
+
+/* Labels, metadata, UI chrome */
+small, time, .label {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-size: 24px;
+  line-height: 1;
+  vertical-align: middle;
+  user-select: none;
+}
+
+/* ------------------------------------------------------------
+   4. Header / nav — glassmorphism, fixed
+   ------------------------------------------------------------ */
+body > header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 50;
+  background: rgba(247, 249, 251, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-sm);
+  padding-block: 0;
+}
+
+body > header nav {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--margin-mobile);
+}
+
+@media (min-width: 768px) {
+  body > header nav {
+    padding-inline: var(--margin-desktop);
+  }
+}
+
+.brand {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.brand:hover { opacity: 0.8; }
+
+body > header nav [aria-current="page"] {
+  color: var(--color-primary);
+  font-weight: 700;
+  border-block-end: 2px solid var(--color-secondary-container);
+  padding-block-end: 2px;
+}
+
+body > header nav [role="button"] {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: var(--radius-full);
+  min-height: var(--touch-target);
+  padding-inline: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+}
+
+body > header nav [role="button"]:hover { opacity: 0.85; }
+
+body > main { padding-block-start: 80px; }
+
+/* ------------------------------------------------------------
+   5. Hero — contained, rounded, sign-like
+   The image sits within the page container with side margins,
+   presented like a physical sign rather than a full-bleed backdrop.
+   ------------------------------------------------------------ */
+.hero-section {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--margin-mobile);
+  padding-block-start: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding-inline: var(--margin-desktop);
+    padding-block-start: var(--space-5);
+  }
+}
+
+.hero-image-wrapper {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ------------------------------------------------------------
+   6. Page intro — brief text beneath the hero sign image
+   ------------------------------------------------------------ */
+.page-intro {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--margin-mobile);
+  padding-block-start: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .page-intro {
+    padding-inline: var(--margin-desktop);
+  }
+}
+
+.page-intro h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-block-end: var(--space-1);
+}
+
+.page-intro p {
+  color: var(--color-on-surface-variant);
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   7. Page container
+   ------------------------------------------------------------ */
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--margin-mobile);
+  padding-block: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--margin-desktop);
+    gap: var(--space-10);
+  }
+}
+
+/* ------------------------------------------------------------
+   8. Speed limit notice
+   ------------------------------------------------------------ */
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: var(--color-surface-white);
+  border-inline-start: 4px solid var(--color-error);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.notice .material-symbols-outlined {
+  color: var(--color-error);
+  font-size: 28px;
+  flex-shrink: 0;
+  margin-block-start: 2px;
+}
+
+.notice p { margin: 0; color: var(--color-on-surface-variant); }
+
+/* ------------------------------------------------------------
+   9. Card grid
+   ------------------------------------------------------------ */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Widget grid — four equal columns at wide viewports */
+.widget-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .widget-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .widget-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.widget-grid article {
+  padding: var(--space-4);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (hover: hover) {
+  .widget-grid article:not(.widget-disabled):hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.widget-grid article h3 { margin: 0; }
+.widget-grid article .widget-body { margin: 0; flex-grow: 1; color: var(--color-on-surface-variant); }
+.widget-grid article .card-read-more { margin-block-start: auto; padding-block-start: var(--space-2); }
+
+.widget-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------
+   10. Cards
+   ------------------------------------------------------------ */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.card-link article {
+  height: 100%;
+  padding: var(--space-4);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+@media (hover: hover) {
+  .card-link:hover article {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 93, 144, 0.08);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.card-link article h3 {
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.card-link article p {
+  margin: 0;
+  color: var(--color-on-surface-variant);
+  flex-grow: 1;
+}
+
+.card-read-more {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-block-start: auto;
+  padding-block-start: var(--space-2);
+  transition: gap 0.25s ease;
+}
+
+@media (hover: hover) {
+  .card-link:hover .card-read-more { gap: 8px; }
+}
+
+/* ------------------------------------------------------------
+   11. Buttons
+   ------------------------------------------------------------ */
+button,
+[role="button"],
+input[type="submit"] {
+  min-height: var(--touch-target);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+button:hover,
+[role="button"]:hover { opacity: 0.85; }
+
+/* ------------------------------------------------------------
+   12. Forms
+   ------------------------------------------------------------ */
+input[type="email"],
+input[type="password"],
+input[type="text"],
+textarea {
+  min-height: var(--touch-target);
+  border-radius: var(--radius-lg);
+  font-size: 18px;
+}
+
+/* ------------------------------------------------------------
+   13. Login / register page centred layout
+   ------------------------------------------------------------ */
+.login-page main,
+.register-page main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100svh - 80px);
+  padding: var(--space-4) var(--margin-mobile);
+}
+
+.login-page article,
+.register-page article {
+  width: 100%;
+  max-width: 440px;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-md);
+  padding: var(--space-4);
+}
+
+.login-error {
+  color: var(--pico-del-color, #c0392b);
+  font-size: 0.875rem;
+  margin-block-end: var(--space-2);
+}
+
+@media (min-width: 480px) {
+  .login-page article,
+  .register-page article { padding: var(--space-6); }
+}
+
+/* ------------------------------------------------------------
+   14. Footer
+   ------------------------------------------------------------ */
+body > footer {
+  background: var(--color-surface-white);
+  border-block-start: 1px solid var(--color-outline-variant);
+  padding-block: var(--space-6);
+}
+
+body > footer nav {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--margin-mobile);
+}
+
+body > footer small {
+  display: block;
+  text-align: center;
+  color: var(--color-on-surface-variant);
+  margin-block-start: var(--space-2);
+  padding-inline: var(--margin-mobile);
+}
+
+/* ------------------------------------------------------------
+   15. Section headings
+   ------------------------------------------------------------ */
+section > h2 {
+  border-block-end: 1px solid var(--color-outline-variant);
+  padding-block-end: var(--space-2);
+  margin-block-end: var(--space-4);
+}

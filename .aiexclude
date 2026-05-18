@@ -1,0 +1,59 @@
+# .aiexclude
+#
+# Prevents sensitive or irrelevant files from being included in AI agent context.
+# Functions like .gitignore — patterns here are excluded by Gemini and other
+# agents that honour this convention.
+
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Build output
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+.dev.vars
+*.pem
+*.key
+*.cert
+localhost+*
+
+# Version control internals
+.git/
+.jj/
+
+# Package lock files (large, low signal)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Test output and coverage
+coverage/
+test-results/
+test-output.log
+playwright-report/
+
+# IDE and editor
+.vscode/
+.idea/
+*.code-workspace
+
+# Logs
+*.log
+logs/
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+
+# Temporary agent output (not version-controlled)
+.ai/output/
