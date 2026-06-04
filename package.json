@@ -60,7 +60,7 @@
     "z-schema": "^6.0.2"
   },
   "dependencies": {
-    "better-auth": "^1.6.10",
+    "better-auth": "^1.6.11",
     "itty-router": "^5.0.23"
   }
 }
