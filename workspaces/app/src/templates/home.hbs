@@ -4,46 +4,105 @@
     {{> components/head.hbs}}
   </head>
   <body>
-    {{> components/header.hbs}}
+    {{> components/header.hbs navHome=true}}
 
     <main>
 
+      <!-- Hero -->
       <section class="hero-section" aria-label="Waneeta Beach entrance">
         <div class="hero-image-wrapper">
           <picture>
-            <source
-              srcset="/files/entrance-sign-1200.webp 1200w, /files/entrance-sign-800.webp 800w, /files/entrance-sign-400.webp 400w"
-              sizes="(min-width: 768px) calc(100vw - 96px), calc(100vw - 32px)"
-              type="image/webp">
             <img
-              src="/files/entrance-sign-1200.jpg"
-              srcset="/files/entrance-sign-1200.jpg 1200w, /files/entrance-sign-800.jpg 800w, /files/entrance-sign-400.jpg 400w"
-              sizes="(min-width: 768px) calc(100vw - 96px), calc(100vw - 32px)"
+              src="/files/waneeta-beach-entrance-signx800.jpg"
               alt="Waneeta Beach entrance sign — hand-painted letters on weathered wood surrounded by summer foliage"
-              width="1200" height="900">
+              width="800" 
+              height="458"
+              fetchpriority="high">
           </picture>
         </div>
       </section>
 
+      <!-- Page intro -->
       <div class="page-intro">
-        <h1>Waneeta Beach</h1>
+        <h1>Life on the Shoreline</h1>
+        <div class="accent-bar" aria-hidden="true"></div>
         <p>A private cottage community on the north shore of Lake Erie, Ontario.</p>
       </div>
 
-      <div class="container">
+      <!-- Bento grid -->
+      <h2 class="sr-only">Community information</h2>
+      <div class="bento-container">
+        <div class="bento-grid">
 
-        <section class="notice" aria-label="Community notice">
-          <span class="material-symbols-outlined" aria-hidden="true">warning</span>
-          <p>Please observe the strict <strong>15 km/h speed limit</strong> on all community roads to ensure the safety of pedestrians, children, and pets near the shoreline.</p>
-        </section>
+          <!-- Community Notice — 8 cols -->
+          <article class="glass-card bento-notice" aria-label="Community safety notice">
+            <div class="bento-notice__image">
+              <img
+                src="/files/15kmh-speed-sign.jpg"
+                alt="15 km/h speed limit sign on Waneeta Beach road"
+                width="448" height="597">
+            </div>
+            <div class="bento-notice__body">
+              <div class="bento-eyebrow">
+                <span class="material-symbols-outlined" aria-hidden="true">warning</span>
+                <span class="label">Community Safety</span>
+              </div>
+              <h3>Please observe the 15 km/h limit</h3>
+              <p>This ensures the safety of our residents, pedestrians, children, pets, and wildlife near the shoreline. Slower speeds also help reduce dust in the dry season and prevent potholes during the wet season.</p>
+            </div>
+          </article>
 
-        <section aria-labelledby="community-updates-heading">
-          <h2 id="community-updates-heading">Community Updates</h2>
-          <div class="widget-grid">
+          <!-- Garbage Pickup — 4 cols -->
+          <article id="widget-garbage" class="glass-card bento-accent">
+            <div>
+              <div class="bento-accent__icon">
+                <span class="material-symbols-outlined" aria-hidden="true">delete</span>
+              </div>
+              <h3>Next Garbage Pickup</h3>
+              <p class="widget-body">Loading&hellip;</p>
+            </div>
+            <a
+              href="https://www.malahide.ca/public/download/files/333206"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="card-read-more">
+              Full schedule
+              <span class="material-symbols-outlined" aria-hidden="true" style="font-size:18px">calendar_month</span>
+            </a>
+          </article>
 
-            <article id="widget-weather">
-              <span class="card-icon material-symbols-outlined" aria-hidden="true">partly_cloudy_day</span>
-              <h3>Weather</h3>
+          <!-- Electricity Status — 6 cols -->
+          <article id="widget-power" class="glass-card bento-status widget-disabled" aria-disabled="true">
+            <div class="bento-status__icon">
+              <span class="material-symbols-outlined" aria-hidden="true">electric_bolt</span>
+            </div>
+            <div>
+              <h3>Electricity Status</h3>
+              <p>Coming soon</p>
+            </div>
+          </article>
+
+          <!-- Latest Discussion — 6 cols -->
+          <article class="glass-card bento-discussion">
+            <div class="bento-eyebrow">
+              <span class="material-symbols-outlined" aria-hidden="true">forum</span>
+              <span class="label">Latest Discussion</span>
+            </div>
+            <h3>Members Message Board</h3>
+            <p>Join the conversation — share updates, ask questions, and stay connected with your community.</p>
+            <a href="/forum" class="card-read-more">
+              View board
+              <span class="material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_forward</span>
+            </a>
+          </article>
+
+          <!-- Local Weather — 4 cols -->
+          <article id="widget-weather" class="glass-card bento-weather">
+            <div class="bento-weather__icon">
+              <span class="material-symbols-outlined" aria-hidden="true" id="widget-weather-icon">partly_cloudy_day</span>
+            </div>
+            <div>
+              <h3>Local Weather</h3>
               <p class="widget-body">Loading&hellip;</p>
               <a
                 href="https://open-meteo.com/en/docs#latitude=42.6559&longitude=-81.0089"
@@ -53,26 +112,18 @@
                 View source
                 <span class="material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_forward</span>
               </a>
-            </article>
+            </div>
+          </article>
 
-            <article id="widget-garbage">
-              <span class="card-icon material-symbols-outlined" aria-hidden="true">delete</span>
-              <h3>Garbage Day</h3>
-              <p class="widget-body">Loading&hellip;</p>
-              <a
-                href="https://www.malahide.ca/public/download/files/333206"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="card-read-more">
-                View schedule
-                <span class="material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_forward</span>
-              </a>
-            </article>
-
-            <article id="widget-catfish">
-              <span class="card-icon material-symbols-outlined" aria-hidden="true">water</span>
+          <!-- Catfish Creek / Lake Conditions — 8 cols -->
+          <article id="widget-catfish" class="glass-card bento-lake">
+            <div class="bento-lake__icon">
+              <span class="material-symbols-outlined" aria-hidden="true">water</span>
+            </div>
+            <div class="bento-lake__body">
               <h3>Catfish Creek</h3>
               <p class="widget-body">Loading&hellip;</p>
+              <p class="widget-catfish-date" id="widget-catfish-date"></p>
               <a
                 id="widget-catfish-link"
                 href="https://www.catfishcreek.ca/programs/water-management/flood-forecasting-and-warning/flood-notices/"
@@ -82,18 +133,10 @@
                 View advisories
                 <span class="material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_forward</span>
               </a>
-            </article>
+            </div>
+          </article>
 
-            <article id="widget-power" class="widget-disabled" aria-disabled="true">
-              <span class="card-icon material-symbols-outlined" aria-hidden="true">bolt</span>
-              <h3>Power</h3>
-              <p class="widget-body">Coming soon</p>
-              <span class="card-read-more" aria-hidden="true">&mdash;</span>
-            </article>
-
-          </div>
-        </section>
-
+        </div>
       </div>
 
     </main>

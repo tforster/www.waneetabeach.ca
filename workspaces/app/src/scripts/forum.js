@@ -2,11 +2,10 @@
  * forum.js — Members portal: forum thread list + thread detail views.
  *
  * Single-page behaviour driven by fetch. No page navigation required.
- * The API redirects unauthenticated requests to /login before this runs.
+ * Handles authentication checks and shows CTA to login if not authenticated.
  */
 
 /**
- * @typedef {{ id: string, slug: string, label: string, sort_order: number }} Category
  *
  * @typedef {{ id: string, category_id: string, category_label: string,
  *             title: string, author_id: string, author_name: string, created_at: string,
@@ -15,12 +14,6 @@
  * @typedef {{ id: string, thread_id: string, author_id: string, author_name: string,
  *             body: string, created_at: string }} Post
  */
-
-/** @type {Thread[]} */
-let allThreads = [];
-
-/** @type {string | null} */
-let activeCategory = null;
 
 /** @type {string | null} */
 let currentThreadId = null;
@@ -33,7 +26,7 @@ let currentThreadId = null;
  * GET a JSON resource from the API. Throws on non-2xx responses.
  *
  * @param {string} path
- * @returns {Promise<any>}
+ * @returns {Promise<unknown>}
  */
 async function apiGet(path) {
   const res = await fetch(path);
@@ -48,67 +41,13 @@ async function apiGet(path) {
 // ---------------------------------------------------------------------------
 
 /**
- * Fetches categories and threads in parallel and renders the full list view.
+ * Fetches threads and renders the full list view.
  *
  * @returns {Promise<void>}
  */
 async function loadThreadList() {
-  const [categories, threads] = await Promise.all([
-    apiGet("/api/forum/categories"),
-    apiGet("/api/forum/threads"),
-  ]);
-
-  allThreads = threads;
-  renderCategoryFilter(categories);
+  const threads = /** @type {Thread[]} */ (await apiGet("/api/forum/threads"));
   renderThreadRows(threads);
-  populateCategorySelect(categories);
-}
-
-/**
- * Renders the category filter button bar above the thread table.
- *
- * @param {Category[]} categories
- * @returns {void}
- */
-function renderCategoryFilter(categories) {
-  const nav = document.getElementById("category-filter");
-  if (!nav) return;
-
-  const all = document.createElement("button");
-  all.className = "outline category-btn";
-  all.dataset.category = "";
-  all.textContent = "All";
-  all.setAttribute("aria-pressed", "true");
-  all.addEventListener("click", () => setCategory(null, all));
-  nav.append(all);
-
-  for (const cat of categories) {
-    const btn = document.createElement("button");
-    btn.className = "outline category-btn";
-    btn.dataset.category = cat.id;
-    btn.textContent = cat.label;
-    btn.setAttribute("aria-pressed", "false");
-    btn.addEventListener("click", () => setCategory(cat.id, btn));
-    nav.append(btn);
-  }
-}
-
-/**
- * Sets the active category filter and re-renders the thread rows.
- *
- * @param {string | null} categoryId - null means "All"
- * @param {HTMLButtonElement} activeBtn - the button that was clicked
- * @returns {void}
- */
-function setCategory(categoryId, activeBtn) {
-  activeCategory = categoryId;
-  document.querySelectorAll(".category-btn").forEach((b) => {
-    b.setAttribute("aria-pressed", b === activeBtn ? "true" : "false");
-  });
-  const filtered = categoryId
-    ? allThreads.filter((t) => t.category_id === categoryId)
-    : allThreads;
-  renderThreadRows(filtered);
 }
 
 /**
@@ -122,19 +61,18 @@ function renderThreadRows(threads) {
   if (!tbody) return;
 
   if (!threads.length) {
-    tbody.innerHTML = "<tr><td colspan=\"5\">No threads yet.</td></tr>";
+    tbody.innerHTML = '<tr><td colspan="4">No threads yet.</td></tr>';
     return;
   }
 
   tbody.innerHTML = threads
     .map(
       (t) => `<tr>
-        <td>${escHtml(t.category_label)}</td>
         <td><a href="#" class="thread-link" data-id="${t.id}">${escHtml(t.title)}</a></td>
         <td>${escHtml(t.author_name)}</td>
         <td>${t.post_count ?? 0}</td>
         <td>${t.last_activity ? t.last_activity.slice(0, 10) : t.created_at.slice(0, 10)}</td>
-      </tr>`
+      </tr>`,
     )
     .join("");
 
@@ -142,30 +80,13 @@ function renderThreadRows(threads) {
     a.addEventListener("click", (e) => {
       e.preventDefault();
       showThread(a.dataset.id);
-    })
+    }),
   );
 }
 
 // ---------------------------------------------------------------------------
 // New thread form
 // ---------------------------------------------------------------------------
-
-/**
- * Populates the category <select> in the new-thread form.
- *
- * @param {Category[]} categories
- * @returns {void}
- */
-function populateCategorySelect(categories) {
-  const select = document.getElementById("new-thread-category");
-  if (!select) return;
-  for (const cat of categories) {
-    const opt = document.createElement("option");
-    opt.value = cat.id;
-    opt.textContent = cat.label;
-    select.append(opt);
-  }
-}
 
 /**
  * Handles submission of the new-thread form.
@@ -185,11 +106,12 @@ async function handleNewThread(e) {
       body: JSON.stringify(data),
     });
     if (!res.ok) throw new Error(String(res.status));
-    form.reset();
-    /** @type {HTMLDetailsElement} */ (form.closest("details")).open = false;
+    /** @type {HTMLFormElement} */ (form).reset();
+    // Scroll back to top and reload
+    window.scrollTo({ top: 0, behavior: "smooth" });
     await loadThreadList();
   } catch {
-    alert("Could not post thread. Please try again.");
+    alert("Could not post message. Please try again.");
   }
 }
 
@@ -215,7 +137,7 @@ async function handleReply(e) {
       body: JSON.stringify({ body }),
     });
     if (!res.ok) throw new Error(String(res.status));
-    form.reset();
+    /** @type {HTMLFormElement} */ (form).reset();
     await showThread(currentThreadId);
   } catch {
     alert("Could not post reply. Please try again.");
@@ -239,26 +161,35 @@ async function showThread(threadId) {
   $id("thread-title").textContent = "Loading…";
   $id("thread-posts").innerHTML = "";
 
-  const [thread, posts] = /** @type {[Thread, Post[]]} */ (await Promise.all([
-    apiGet(`/api/forum/threads/${threadId}`),
-    apiGet(`/api/forum/threads/${threadId}/posts`),
-  ]));
+  const [thread, posts] = /** @type {[Thread, Post[]]} */ (
+    await Promise.all([apiGet(`/api/forum/threads/${threadId}`), apiGet(`/api/forum/threads/${threadId}/posts`)])
+  );
 
   $id("thread-title").textContent = thread.title;
   $id("thread-meta").textContent = `${thread.category_id} · ${thread.created_at.slice(0, 10)}`;
 
   const container = $id("thread-posts");
-  container.innerHTML = posts
+  const originalPost = `<article>
+    <header>
+      <strong>${escHtml(thread.author_name)}</strong>
+      <small>${thread.created_at.slice(0, 10)} · original post</small>
+    </header>
+    <p>${escHtml(thread.body)}</p>
+  </article>`;
+
+  const repliesHtml = posts
     .map(
-      (p, i) => `<article>
+      (p) => `<article>
         <header>
           <strong>${escHtml(p.author_name)}</strong>
-          <small>${p.created_at.slice(0, 10)}${i === 0 ? " · original post" : ""}</small>
+          <small>${p.created_at.slice(0, 10)}</small>
         </header>
         <p>${escHtml(p.body)}</p>
-      </article>`
+      </article>`,
     )
     .join("");
+
+  container.innerHTML = originalPost + repliesHtml;
 }
 
 /**
@@ -282,11 +213,7 @@ function showList() {
  * @returns {string}
  */
 function escHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 /**
@@ -301,16 +228,82 @@ function $id(id) {
   return /** @type {T} */ (/** @type {unknown} */ (document.getElementById(id)));
 }
 
+/**
+ * Checks if the user is authenticated.
+ * Attempts to fetch the current user; shows auth CTA if 401 is returned.
+ *
+ * @returns {Promise<boolean>}
+ */
+async function checkAuthentication() {
+  try {
+    const res = await fetch("/api/auth/session");
+    if (res.status === 401) {
+      showAuthCTA();
+      return false;
+    }
+    if (!res.ok) throw new Error(String(res.status));
+    return true;
+  } catch {
+    // Network error or other issue — assume not authenticated for safety
+    showAuthCTA();
+    return false;
+  }
+}
+
+/**
+ * Shows the authentication required CTA and hides the forum content.
+ *
+ * @returns {void}
+ */
+function showAuthCTA() {
+  const authRequired = $id("auth-required");
+  const threadList = $id("thread-list");
+  const threadDetail = $id("thread-detail");
+  authRequired.hidden = false;
+  threadList.hidden = true;
+  threadDetail.hidden = true;
+}
+
+/**
+ * Shows the forum content (hides auth CTA).
+ *
+ * @returns {void}
+ */
+function showForumContent() {
+  const authRequired = $id("auth-required");
+  authRequired.hidden = true;
+}
+
 // ---------------------------------------------------------------------------
 // Boot
 // ---------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("back-to-list")?.addEventListener("click", showList);
+  document.getElementById("back-to-list")?.addEventListener("click", () => {
+    showList();
+    // Reset form when returning to list
+    const form = document.getElementById("new-thread-form");
+    if (form) /** @type {HTMLFormElement} */ (form).reset();
+  });
+  document.getElementById("new-message-btn")?.addEventListener("click", () => {
+    const subjectField = document.getElementById("new-thread-title");
+    if (subjectField) {
+      subjectField.focus();
+      // Scroll to the form
+      subjectField.closest(".forum-new-message")?.scrollIntoView({ behavior: "smooth" });
+    }
+  });
   document.getElementById("new-thread-form")?.addEventListener("submit", handleNewThread);
   document.getElementById("reply-form")?.addEventListener("submit", handleReply);
-  loadThreadList().catch(() => {
-    const tbody = document.getElementById("thread-rows");
-    if (tbody) tbody.innerHTML = "<tr><td colspan=\"5\">Could not load threads.</td></tr>";
+
+  // Check authentication before loading threads
+  checkAuthentication().then((isAuthenticated) => {
+    if (isAuthenticated) {
+      showForumContent();
+      loadThreadList().catch(() => {
+        const tbody = document.getElementById("thread-rows");
+        if (tbody) tbody.innerHTML = '<tr><td colspan="5">Could not load threads.</td></tr>';
+      });
+    }
   });
 });

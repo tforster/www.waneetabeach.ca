@@ -3,7 +3,7 @@ import schedule from "../malahide-waste-schedule.2026.monday.json" with { type: 
 const WEATHER_URL =
   "https://api.open-meteo.com/v1/forecast" +
   "?latitude=42.655895370745334&longitude=-81.0088825336432" +
-  "&current=temperature_2m,weathercode,windspeed_10m&temperature_unit=celsius";
+  "&current=temperature_2m,weathercode,windspeed_10m,winddirection_10m&temperature_unit=celsius";
 
 const CATFISH_URL =
   "https://www.catfishcreek.ca/wp-json/wp/v2/posts" +
@@ -72,9 +72,11 @@ export async function fetchWeather(fetchFn) {
     const res = await fetchFn(WEATHER_URL);
     const { current } = await res.json();
     return {
-      temperature: current.temperature_2m,
-      conditions: WMO[current.weathercode] ?? "Unknown",
-      windspeed: current.windspeed_10m,
+      temperature:   current.temperature_2m,
+      weathercode:   current.weathercode,
+      conditions:    WMO[current.weathercode] ?? "Unknown",
+      windspeed:     current.windspeed_10m,
+      windDirection: current.winddirection_10m,
     };
   } catch {
     return { error: "unavailable" };

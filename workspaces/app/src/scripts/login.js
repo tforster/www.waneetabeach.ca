@@ -30,7 +30,7 @@ async function handleSignIn(e) {
     });
 
     if (res.ok) {
-      window.location.replace("/forum");
+      window.location.replace("/");
       return;
     }
 

@@ -1,154 +1,227 @@
 ---
-name: Lake Erie Shore
+name: Sophisticated Coastal
 colors:
-  surface: '#f7f9fb'
-  surface-dim: '#d8dadc'
-  surface-bright: '#f7f9fb'
-  surface-container-lowest: '#ffffff'
-  surface-container-low: '#f2f4f6'
-  surface-container: '#eceef0'
-  surface-container-high: '#e6e8ea'
-  surface-container-highest: '#e0e3e5'
-  on-surface: '#191c1e'
-  on-surface-variant: '#404850'
-  inverse-surface: '#2d3133'
-  inverse-on-surface: '#eff1f3'
-  outline: '#707881'
-  outline-variant: '#bfc7d1'
-  surface-tint: '#006399'
-  primary: '#005d90'
-  on-primary: '#ffffff'
-  primary-container: '#0077b6'
-  on-primary-container: '#f3f7ff'
-  inverse-primary: '#94ccff'
-  secondary: '#785a00'
-  on-secondary: '#ffffff'
-  secondary-container: '#ffc300'
-  on-secondary-container: '#6d5200'
-  tertiary: '#405982'
-  on-tertiary: '#ffffff'
-  tertiary-container: '#59729c'
-  on-tertiary-container: '#f6f7ff'
-  error: '#ba1a1a'
-  on-error: '#ffffff'
-  error-container: '#ffdad6'
-  on-error-container: '#93000a'
-  primary-fixed: '#cde5ff'
-  primary-fixed-dim: '#94ccff'
-  on-primary-fixed: '#001d32'
-  on-primary-fixed-variant: '#004b74'
-  secondary-fixed: '#ffdf9a'
-  secondary-fixed-dim: '#f8be00'
-  on-secondary-fixed: '#251a00'
-  on-secondary-fixed-variant: '#5a4300'
-  tertiary-fixed: '#d6e3ff'
-  tertiary-fixed-dim: '#aec7f6'
-  on-tertiary-fixed: '#001b3d'
-  on-tertiary-fixed-variant: '#2d476f'
-  background: '#f7f9fb'
-  on-background: '#191c1e'
-  surface-variant: '#e0e3e5'
+  surface: "#f7fafc"
+  surface-dim: "#d7dadc"
+  surface-bright: "#f7fafc"
+  surface-container-lowest: "#ffffff"
+  surface-container-low: "#f1f4f6"
+  surface-container: "#ebeef0"
+  surface-container-high: "#e5e9eb"
+  surface-container-highest: "#e0e3e5"
+  on-surface: "#181c1e"
+  on-surface-variant: "#42474e"
+  inverse-surface: "#2d3133"
+  inverse-on-surface: "#eef1f3"
+  outline: "#72787e"
+  outline-variant: "#c2c7ce"
+  surface-tint: "#366285"
+  primary: "#00253b"
+  on-primary: "#ffffff"
+  primary-container: "#003b5c"
+  on-primary-container: "#7aa5cc"
+  inverse-primary: "#a0cbf3"
+  secondary: "#7d5700"
+  on-secondary: "#ffffff"
+  secondary-container: "#feb71a"
+  on-secondary-container: "#6b4b00"
+  tertiary: "#00253a"
+  on-tertiary: "#ffffff"
+  tertiary-container: "#103b56"
+  on-tertiary-container: "#80a5c5"
+  error: "#ba1a1a"
+  on-error: "#ffffff"
+  error-container: "#ffdad6"
+  on-error-container: "#93000a"
+  primary-fixed: "#cce5ff"
+  primary-fixed-dim: "#a0cbf3"
+  on-primary-fixed: "#001d31"
+  on-primary-fixed-variant: "#1a4a6c"
+  secondary-fixed: "#ffdeaa"
+  secondary-fixed-dim: "#ffba2c"
+  on-secondary-fixed: "#271900"
+  on-secondary-fixed-variant: "#5f4100"
+  tertiary-fixed: "#cbe6ff"
+  tertiary-fixed-dim: "#a5cbec"
+  on-tertiary-fixed: "#001e30"
+  on-tertiary-fixed-variant: "#234a66"
+  background: "#f7fafc"
+  on-background: "#181c1e"
+  surface-variant: "#e0e3e5"
 typography:
-  headline-xl:
-    fontFamily: Source Serif Four
-    fontSize: 48px
-    fontWeight: '700'
-    lineHeight: 56px
-    letterSpacing: -0.02em
   headline-lg:
-    fontFamily: Source Serif Four
+    fontFamily: Source Serif 4
+    fontSize: 48px
+    fontWeight: "700"
+    lineHeight: "1.2"
+    letterSpacing: -0.02em
+  headline-lg-mobile:
+    fontFamily: Source Serif 4
     fontSize: 32px
-    fontWeight: '700'
-    lineHeight: 40px
+    fontWeight: "700"
+    lineHeight: "1.2"
   headline-md:
-    fontFamily: Source Serif Four
-    fontSize: 24px
-    fontWeight: '600'
-    lineHeight: 32px
-  body-lg:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 20px
-    fontWeight: '400'
-    lineHeight: 32px
-  body-md:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 18px
-    fontWeight: '400'
-    lineHeight: 28px
-  label-sm:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 14px
-    fontWeight: '600'
-    lineHeight: 20px
-    letterSpacing: 0.05em
-  headline-xl-mobile:
-    fontFamily: Source Serif Four
+    fontFamily: Source Serif 4
     fontSize: 32px
-    fontWeight: '700'
-    lineHeight: 40px
+    fontWeight: "600"
+    lineHeight: "1.3"
+  headline-sm:
+    fontFamily: Source Serif 4
+    fontSize: 24px
+    fontWeight: "600"
+    lineHeight: "1.4"
+  body-lg:
+    fontFamily: Work Sans
+    fontSize: 18px
+    fontWeight: "400"
+    lineHeight: "1.6"
+  body-md:
+    fontFamily: Work Sans
+    fontSize: 16px
+    fontWeight: "400"
+    lineHeight: "1.5"
+  label-md:
+    fontFamily: Work Sans
+    fontSize: 14px
+    fontWeight: "600"
+    lineHeight: "1"
+    letterSpacing: 0.05em
+  label-sm:
+    fontFamily: Work Sans
+    fontSize: 12px
+    fontWeight: "500"
+    lineHeight: "1"
 rounded:
-  sm: 0.125rem
-  DEFAULT: 0.25rem
-  md: 0.375rem
-  lg: 0.5rem
-  xl: 0.75rem
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  md: 0.75rem
+  lg: 1rem
+  xl: 1.5rem
   full: 9999px
 spacing:
-  base: 8px
-  container-max: 1200px
+  unit: 8px
   gutter: 24px
   margin-mobile: 16px
-  margin-desktop: 48px
-  section-padding: 80px
+  margin-desktop: 64px
+  max-width: 1280px
 ---
 
 ## Brand & Style
 
-This design system is built to evoke the crisp, refreshing atmosphere of a summer morning on the north shore of Lake Erie. The brand personality is neighborly, clear, and unpretentious. It avoids the clutter of traditional "community" portals in favor of a Modern Minimalist aesthetic that incorporates subtle tactile elements—inspired by hand-carved wooden signage and the physical depth of lake waves.
+The design system is rooted in a "Sophisticated-Coastal" aesthetic. It balances the rugged, organic beauty of the Great Lakes with a polished, professional clarity. The target audience includes modern travelers, local residents, and maritime professionals who value reliability and warmth.
 
-The visual language prioritizes high-contrast legibility and "airy" layouts to simulate the feeling of open water and sky. The target audience includes local residents and seasonal visitors who value straightforward information presented with a sophisticated, coastal touch.
+The style is **Corporate / Modern**. It avoids the clichés of tropical nautical themes, opting instead for a temperate, editorial feel. The UI should evoke a sense of a clear horizon: expansive, breathable, and structured. High-quality whitespace is used to emphasize content, while vibrant accents provide energy without overwhelming the functional requirements of the interface.
 
 ## Colors
 
-The palette is derived directly from the lakeside environment. The **Primary Blue** (#0077B6) represents the mid-day lake water, used for main actions and navigational elements. The **Secondary Yellow** (#FFC300) acts as a high-visibility accent for notifications or primary "Call to Action" buttons, mirroring the warmth of the sun. 
+This design system utilizes a palette drawn from the aging hand painted sign that is at the beginning of the long private road, and captured in workspaces/app/src/files/waneeta-beach-entrance-signx800.jpg
 
-The **Tertiary Navy** (#002147) provides the "Deep Blue" of the gulls and the wave shadows, used primarily for typography and heavy borders. The background remains a **Neutral White/Gray** (#F8FAFC) to ensure the 18px body text maintains maximum contrast and readability against a clean, "sandy" canvas.
+- **Primary (Deep Wave):** A high-contrast, authoritative navy used for headers, primary actions, and navigational anchors.
+- **Secondary (Sunlit Sand):** A vibrant, warm yellow used sparingly for high-priority calls to action, notifications, or active states to ensure they "pop" against the cool palette.
+- **Tertiary (Lake Mist):** A muted, mid-tone blue for secondary iconography, borders, and decorative elements.
+- **Neutral (Pebble & Shore):** A range of off-whites and cool greys that provide the structural foundation. Surfaces should use a warm white to maintain the "coastal" warmth rather than a clinical pure white.
 
 ## Typography
 
-This design system utilizes a "High-Contrast Serif" for headings to provide an elegant, established feel that echoes the carved lettering of the original beach sign. **Source Serif Four** offers the necessary weight and authority for community news and headers.
+The typographic hierarchy creates a dialogue between tradition and modernity. **Source Serif 4** provides an editorial, authoritative voice for headlines, reminiscent of classic maritime logs and prestigious news outlets. Its high readability and sturdy character evoke a sense of history and trust.
 
-For body copy, **Plus Jakarta Sans** is employed to maintain a friendly, approachable, and modern tone. Per the accessibility requirements, the base body size starts at 18px. Line heights are kept generous (1.5x minimum) to ensure long-form community updates are easy to read for all age groups. Label styles use a slight tracking increase to ensure clarity at smaller sizes.
+**Work Sans** serves as the functional workhorse. It is a grounded, neutral sans-serif that ensures clarity in data-heavy views and long-form body copy. Labels and navigational items should utilize the medium or semi-bold weights of Work Sans with slight letter-spacing to improve scannability in dense layouts.
 
 ## Layout & Spacing
 
-The layout follows a **Fixed Grid** model on desktop, centering the content at a maximum width of 1200px to maintain a focused, readable line length. On mobile devices, the layout transitions to a fluid, single-column grid with 16px side margins.
+The design system employs a **Fixed Grid** model for desktop to ensure a curated, editorial experience, while transitioning to a fluid layout for mobile devices.
 
-A "breathable" rhythm is achieved through an 8px base unit. Section-to-section spacing is intentionally large (80px+) to distinguish between different types of community information (e.g., weather alerts vs. event calendars), preventing a cluttered "bulletin board" appearance.
+- **Desktop:** 12-column grid with 24px gutters. The layout is centered with a max-width of 1280px to prevent excessive line lengths in the typography.
+- **Mobile:** Single column with 16px side margins.
+- **Rhythm:** All vertical spacing must be a multiple of the 8px base unit. Section-level spacing should be generous (80px–120px) to allow the "breathable" coastal feeling to manifest through white space.
 
 ## Elevation & Depth
 
-Visual hierarchy is established through **Tonal Layers** and **Ambient Shadows**. Surfaces do not "float" aggressively; instead, they use very soft, diffused shadows with a slight blue tint (#002147 at 5-8% opacity) to mimic the way light hits the carved wood of the beach sign.
+To modernize the roadside-sign inspiration, this design system replaces flat colors with **Ambient Shadows** and **Tonal Layers**.
 
-Deep Navy outlines (1px) are used sparingly for input fields and card borders to provide "crispness" without adding visual weight. Active states for buttons and interactive elements use a subtle inset shadow to simulate the "pressed" feel of a physical sign.
+Hierarchy is established by stacking surfaces. Backgrounds are the lowest layer (Neutral 50), while cards and containers sit on "Level 1" elevation. Shadows should be extra-diffused with a low opacity (8-12%) and a slight tint of the Primary color (#003B5C) to create a more natural, environmental depth rather than a muddy grey.
+
+Subtle backdrop blurs (10px–20px) may be used on sticky navigation bars or modal overlays to simulate the misty quality of the lake shore without sacrificing legibility.
 
 ## Shapes
 
-The shape language is **Soft**. UI elements use a 0.25rem (4px) base radius. This provides a balance between the organic, hand-hewn nature of the lakefront and the modern, digital efficiency of the website. Large containers like cards or image wrappers may use the `rounded-lg` (8px) setting to appear more inviting and less "industrial."
+The shape language is defined as **Rounded**. This softens the professional tone, making the UI feel more approachable and "warm" as requested.
+
+- **Standard Elements:** Buttons, input fields, and small cards use a 0.5rem (8px) radius.
+- **Large Containers:** Hero sections or prominent feature cards use 1rem (16px) to emphasize the modern, friendly aesthetic.
+- **Iconography:** Should follow a "soft-corner" geometric style, matching the 2px–3px stroke weights used in the neutral UI borders.
 
 ## Components
 
 ### Buttons
-Primary buttons use the Lake Blue fill with white text. Secondary buttons utilize the Sun Yellow to draw attention to high-priority community alerts or "Join" actions. All buttons feature a 2px bottom border in a slightly darker shade of their fill color to create a tactile, carved effect.
+
+All buttons use **subtle rounded corners** (`border-radius: 1rem / 16px`) for a polished, modern appearance that feels approachable without the full pill-shape aesthetic.
+
+**Primary Buttons** — `.button`
+
+- Background: `var(--color-primary)` (Deep Wave Navy #00253b)
+- Text: `var(--color-on-primary)` (White)
+- Border radius: 1rem (16px) — subtle, not full-pill
+- Min height: 48px (touch target)
+- Padding: 8px (vertical) × 16px (horizontal) — `var(--space-2) × var(--space-3)`
+- Font: 14px / 0.875rem, weight 600, letter-spacing 0.02em (label-md)
+- Used for: Form submissions, primary CTAs ("Post Message", "Sign In", "Create Account")
+- Hover state: Opacity 0.85
+
+**Secondary Buttons** — `.button.outline`
+
+- Background: Transparent
+- Border: 1px solid `var(--color-primary)`
+- Text: `var(--color-primary)`
+- Border radius: 1rem (16px) — matches primary styling
+- Same sizing, padding, and hover as primary
+- Used for: Cancellations, back actions, alternative paths ("Cancel", "Back to Messages")
+
+**Button Groups & Spacing**
+
+- Single action buttons: Right-aligned by default (desktop)
+- Multiple buttons: Right-aligned with 16px gap (`var(--space-3)`)
+- Mobile: Stack vertically (flex-direction: column, flex: 1 width) only if needed for space
+- **Never stretch buttons to fill horizontal space on desktop.** Keep them compact and intentional.
+
+**Icon + Text Buttons**
+
+- Icon size: 20px
+- Icon margin from text: 0.5em
+- Example: "New Message" button with add_circle icon
+- Icons use Material Symbols Outlined
+
+**Example HTML**
+
+```html
+<!-- Primary button -->
+<button type="submit" class="button">Post Message</button>
+
+<!-- Secondary button -->
+<button type="reset" class="button outline">Cancel</button>
+
+<!-- Link styled as button -->
+<a href="/login" class="button">Sign In</a>
+
+<!-- Icon + text button -->
+<button id="new-message" class="button">
+  <span class="material-symbols-outlined" aria-hidden="true">add_circle</span>
+  New Message
+</button>
+```
 
 ### Cards
-Cards are used for news items and event listings. They feature a white background, a 1px Navy border at 10% opacity, and a "Soft" corner radius. On hover, the ambient shadow increases slightly to lift the card toward the user.
+
+Cards are the primary container for content. They feature a white background, a very thin 1px border in a light-blue neutral tint, and a Level 1 ambient shadow. Padding inside cards should be generous (min 24px).
 
 ### Input Fields
-Inputs are clean and unpretentious, using the Tertiary Navy for the label and a 1px border for the field. The focus state uses a 2px Lake Blue border to clearly indicate the active area.
+
+Inputs use a light grey background with a subtle bottom-border in the Tertiary blue. When focused, the border transitions to Primary blue with a soft glow effect.
 
 ### Chips & Tags
-Used for categorizing content (e.g., "Beach Alert," "Social," "Meeting"). These are pill-shaped with a light tint of the Primary Blue and bold Tertiary Navy text to ensure readability against the background.
 
-### Navigation Bar
-A transparent or off-white top bar that pins to the top of the viewport. It uses high-contrast Navy links in the 14px uppercase label style, ensuring the menu is always legible against varying background images of the lake.
+Used for categories (e.g., "Dining," "Public Beach"). These should use the Tertiary blue at a very low opacity (10%) with darker text to maintain a soft, professional look.
+
+### Lists
+
+Lists use clean dividers (1px) with ample vertical padding (16px). Hover states should utilize a very pale Sunlit Sand tint to provide a warm, interactive feedback loop.

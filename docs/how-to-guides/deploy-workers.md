@@ -14,6 +14,10 @@ This guide covers both local development and remote (production) deployment. It 
   - [3.3 Seed the First Admin User](#33-seed-the-first-admin-user)
 - [4. Remote Deployment](#4-remote-deployment)
   - [4.1 Auth Worker](#41-auth-worker)
+    - [First-time setup](#first-time-setup)
+    - [Apply migrations](#apply-migrations)
+    - [Deploy the worker](#deploy-the-worker)
+    - [Set the BASE_URL and AUTH_SECRET secrets](#set-the-base_url-and-auth_secret-secrets)
   - [4.2 API Worker](#42-api-worker)
     - [Set up email sending (first-time only)](#set-up-email-sending-first-time-only)
     - [First-time setup](#first-time-setup-1)
@@ -21,6 +25,8 @@ This guide covers both local development and remote (production) deployment. It 
     - [Deploy the worker](#deploy-the-worker-1)
   - [4.3 Seed the First Admin User](#43-seed-the-first-admin-user)
 - [5. Verification](#5-verification)
+  - [5.1 Local](#51-local)
+  - [5.2 Remote](#52-remote)
 - [6. Troubleshooting](#6-troubleshooting)
 
 ## 1. Prerequisites
@@ -35,10 +41,10 @@ The ecosystem is composed of multiple Cloudflare Workers. Workers with database 
 
 Current deployment order:
 
-| Order | Worker | Config | Database | Depends on |
-| :---: | :--- | :--- | :--- | :--- |
-| 1 | Auth | `workspaces/auth/wrangler.json` | `AUTH_DB` (D1) | — |
-| 2 | API  | `workspaces/api/wrangler.json`  | `DB` (D1)      | Auth (`AUTH_SERVICE`), Email Service (`EMAIL`) |
+| Order | Worker | Config                          | Database       | Depends on                                     |
+| :---: | :----- | :------------------------------ | :------------- | :--------------------------------------------- |
+|   1   | Auth   | `workspaces/auth/wrangler.json` | `AUTH_DB` (D1) | —                                              |
+|   2   | API    | `workspaces/api/wrangler.json`  | `DB` (D1)      | Auth (`AUTH_SERVICE`), Email Service (`EMAIL`) |
 
 As subsequent workers are added (e.g. App) they will appear in this table with their dependencies noted.
 
@@ -163,7 +169,8 @@ Commit the updated `wrangler.json` so all contributors share the same database I
 ```bash
 npx wrangler d1 migrations apply waneetabeach-auth \
   --remote \
-  --config workspaces/auth/wrangler.json
+  --config workspaces/auth/wrangler.json \
+  --env production
 ```
 
 #### Deploy the worker
@@ -185,7 +192,7 @@ Wrangler will prompt for the value. Enter the API worker's public URL (e.g. `htt
 Also set the auth secret, used by Better Auth to sign sessions and tokens:
 
 ```bash
-npx wrangler secret put AUTH_SECRET --config workspaces/auth/wrangler.json
+npx wrangler secret put AUTH_SECRET --config workspaces/auth/wrangler.json --env production
 ```
 
 Use a strong random value of at least 32 characters. Secrets take precedence over the `vars` block in `wrangler.json`, which is local dev only.
@@ -237,13 +244,14 @@ Commit the updated `wrangler.json`.
 ```bash
 npx wrangler d1 migrations apply waneetabeach \
   --remote \
-  --config workspaces/api/wrangler.json
+  --config workspaces/api/wrangler.json \
+  --env production
 ```
 
 #### Deploy the worker
 
 ```bash
-npx wrangler deploy --config workspaces/api/wrangler.json
+npx wrangler deploy --config workspaces/api/wrangler.json --env production
 ```
 
 ### 4.3 Seed the First Admin User
@@ -253,9 +261,9 @@ Both workers must be deployed before seeding. Sign-up goes through the API worke
 **Step 1 — Register the user:**
 
 ```bash
-curl -s -X POST https://<your-api-worker-url>/api/auth/sign-up/email \
+curl -s -X POST https://waneetabeach.ca/api/auth/sign-up/email \
   -H "Content-Type: application/json" \
-  -d '{"name":"Admin","email":"admin@example.com","password":"<password>"}'
+  -d '{"name":"Admin","email":"troy.forster@gmail.com","password":""}'
 ```
 
 **Step 2 — Promote to admin:**
@@ -264,7 +272,18 @@ curl -s -X POST https://<your-api-worker-url>/api/auth/sign-up/email \
 npx wrangler d1 execute waneetabeach-auth \
   --remote \
   --config workspaces/auth/wrangler.json \
-  --command "UPDATE \"user\" SET role = 'admin' WHERE email = 'admin@example.com'"
+  --command "UPDATE \"user\" SET role = 'admin' WHERE email = 'troy.forster@gmail.com'" \
+  --env production
+```
+
+**Step 3 - Verify**
+
+```bash
+npx wrangler d1 execute waneetabeach-auth \
+  --remote \
+  --config workspaces/auth/wrangler.json \
+  --command "SELECT \"*\" FROM \"user"\" \
+  --env production
 ```
 
 ## 5. Verification
@@ -299,7 +318,8 @@ Confirm auth schema:
 npx wrangler d1 execute waneetabeach-auth \
   --remote \
   --config workspaces/auth/wrangler.json \
-  --command "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
+  --command "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name" \
+  --env production
 ```
 
 Confirm the API worker is live:

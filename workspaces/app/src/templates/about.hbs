@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> components/head.hbs}}
+  </head>
+  <body>
+    {{> components/header.hbs navAbout=true}}
+
+    <main>
+
+      <!-- Hero panorama -->
+      <section class="hero-section" aria-label="Winter view of Waneeta Beach shoreline">
+        <div class="hero-image-wrapper" style="aspect-ratio: {{panorama.width}} / {{panorama.height}}">
+          <picture>
+            <img
+              src="{{panorama.src}}"
+              alt="{{panorama.alt}}"
+              width="{{panorama.width}}"
+              height="{{panorama.height}}"
+              fetchpriority="high">
+          </picture>
+        </div>
+      </section>
+
+      <!-- Page intro -->
+      <div class="page-intro">
+        <h1>About Waneeta Beach</h1>
+        <div class="accent-bar" aria-hidden="true"></div>
+        <p>{{lede}}</p>
+      </div>
+
+      <!-- History -->
+      <section class="about-section" aria-labelledby="history-heading">
+        <div class="about-section__inner">
+          <h2 id="history-heading">History</h2>
+          <div class="about-prose">
+            {{{history}}}
+          </div>
+        </div>
+      </section>
+
+      <!-- Geography & location -->
+      <section class="about-section about-section--alt" aria-labelledby="geography-heading">
+        <div class="about-section__inner">
+          <h2 id="geography-heading">Geography &amp; Location</h2>
+          <div class="about-geography">
+
+            <div class="about-geography__map">
+              <figure>
+                <iframe
+                  title="{{map.title}}"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox={{map.bbox}}&amp;layer=mapnik&amp;marker={{map.markerLat}},{{map.markerLon}}"
+                  width="100%"
+                  height="360"
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
+                  aria-label="{{map.title}}">
+                </iframe>
+                <figcaption>
+                  <a href="https://www.openstreetmap.org/?mlat={{map.markerLat}}&amp;mlon={{map.markerLon}}#map=14/{{map.markerLat}}/{{map.markerLon}}" target="_blank" rel="noopener noreferrer">
+                    View larger map
+                  </a>
+                  &mdash; © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="about-geography__sidebar">
+              <div class="about-prose">
+                {{{geographyProse}}}
+              </div>
+              <dl class="about-facts">
+                {{#each facts}}
+                <div class="about-facts__row">
+                  <dt>{{label}}</dt>
+                  <dd>{{value}}</dd>
+                </div>
+                {{/each}}
+              </dl>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Natural environment & wildlife -->
+      <section class="about-section" aria-labelledby="environment-heading">
+        <div class="about-section__inner">
+          <h2 id="environment-heading">The Shoreline &amp; Wildlife</h2>
+        </div>
+
+        <div class="about-section__inner">
+          <div class="about-prose">
+            {{{environment}}}
+          </div>
+
+          <!-- Wildlife photo pair -->
+          <div class="about-wildlife-photos" aria-label="Wildlife at Waneeta Beach">
+            {{#each wildlifePhotos}}
+            <figure class="about-wildlife-photos__item">
+              <img
+                src="{{src}}"
+                alt="{{alt}}"
+                width="{{width}}"
+                height="{{height}}"
+                loading="lazy">
+              <figcaption>{{caption}}</figcaption>
+            </figure>
+            {{/each}}
+          </div>
+        </div>
+      </section>
+
+      <!-- Sources & CTA -->
+      <section class="about-section about-section--alt about-footer-section" aria-label="Sources and contribute">
+        <div class="about-section__inner">
+
+          <div class="about-cta">
+            <span class="material-symbols-outlined" aria-hidden="true">volunteer_activism</span>
+            <div class="about-cta__body">
+              {{{ctaText}}}
+            </div>
+          </div>
+
+          <div class="about-sources">
+            <h2 class="about-sources__heading">Sources</h2>
+            {{{sources}}}
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    {{> components/footer.hbs}}
+  </body>
+</html>

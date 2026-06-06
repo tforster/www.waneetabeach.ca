@@ -1,89 +1,129 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    {{> components/head.hbs}}
-    <script type="module" src="/forum.js" defer></script>
-  </head>
-  <body class="forum-page">
-    {{> components/header.hbs}}
 
-    <main class="container">
+<head>
+  {{> components/head.hbs}}
+</head>
 
-      <!-- Thread list view (shown by default) -->
-      <section id="thread-list">
-        <hgroup>
-          <h1>Members Portal</h1>
-          <p>Community discussion board</p>
-        </hgroup>
+<body>
+  {{> components/header.hbs navForum=true}}
+  <main>
 
-        <!-- Category filter — populated by JS -->
-        <nav id="category-filter" aria-label="Filter by category"></nav>
+    <!-- Page intro -->
+    <div class="page-intro">
+      <h1>Community Message Board</h1>
+      <div class="accent-bar" aria-hidden="true"></div>
+      <p>Events, announcements, road concerns and discussions for our community members.</p>
+    </div>
+
+    <!-- Authentication required — CTA for login/register -->
+    <section id="auth-required" class="forum-auth-cta" hidden>
+      <div class="forum-auth-inner">
+        <div class="forum-auth-box">
+          <span class="material-symbols-outlined" aria-hidden="true">forum</span>
+          <h2>Join the Conversation</h2>
+          <p>Only members of the Waneeta Beach community can access the message board.</p>
+          <div class="forum-auth-actions">
+            <a href="/login" class="button outline">Sign In</a>
+            <a href="mailto:troy.forster@gmail.com?subject=request%20to%20register%20for%20waneetabeach.ca&body=Tell%20me%20who%20you%20are%20and%20where%20you%20live%20in%20Waneeta%20Beach"
+              class="button outline" target="_blank" rel="noopener noreferrer">Register</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Authenticated content — thread list and new message form -->
+    <section id="thread-list" class="forum-content">
+
+      <!-- Content wrapper for consistent layout -->
+      <div class="forum-inner">
+
+        <!-- New message button — focuses subject field -->
+        <button id="new-message-btn" class="button" style="margin-block-end: var(--space-4);">
+          <span class="material-symbols-outlined" aria-hidden="true" style="font-size:20px">add_circle</span>
+          New Message
+        </button>
 
         <!-- Thread table — populated by JS -->
-        <figure>
+        <div class="forum-table-wrapper">
           <table role="grid">
             <thead>
               <tr>
-                <th>Category</th>
-                <th>Title</th>
+                <th>Subject</th>
                 <th>Author</th>
                 <th>Replies</th>
                 <th>Last activity</th>
               </tr>
             </thead>
             <tbody id="thread-rows">
-              <tr><td colspan="5" aria-busy="true">Loading&hellip;</td></tr>
+              <tr>
+                <td colspan="5" aria-busy="true">Loading&hellip;</td>
+              </tr>
             </tbody>
           </table>
-        </figure>
+        </div>
 
-        <!-- New thread form -->
-        <details>
-          <summary>Start a new thread</summary>
+      </div>
+
+      <!-- New message form — below table -->
+      <div class="forum-new-message">
+        <div class="forum-inner">
+          <h2 id="new-message-heading">Start a New Message</h2>
           <form id="new-thread-form">
-            <label for="new-thread-category">
-              Category
-              <select id="new-thread-category" name="category_id" required></select>
-            </label>
             <label for="new-thread-title">
-              Title
+              Subject
               <input type="text" id="new-thread-title" name="title" required maxlength="200">
             </label>
+            <!-- Category defaults to 'general' -->
+            <input type="hidden" id="new-thread-category" name="category_id" value="cat_general">
             <label for="new-thread-body">
               Message
-              <textarea id="new-thread-body" name="body" required rows="5"></textarea>
+              <textarea id="new-thread-body" name="body" required rows="5"
+                placeholder="Share your thoughts, questions, or updates with the community..."></textarea>
             </label>
-            <button type="submit">Post thread</button>
+            <div class="forum-form-actions">
+              <button type="submit" class="button">Post Message</button>
+              <button type="reset" class="button outline">Cancel</button>
+            </div>
           </form>
-        </details>
-      </section>
+        </div>
+      </div>
 
-      <!-- Thread detail view (hidden until a thread is selected) -->
-      <section id="thread-detail" hidden>
-        <nav aria-label="Breadcrumb">
-          <button id="back-to-list" class="outline">
+    </section>
+
+    <!-- Thread detail view (hidden until a thread is selected) -->
+    <section id="thread-detail" class="forum-content" hidden>
+      <div class="forum-inner">
+        <nav aria-label="Breadcrumb" style="margin-block-end: var(--space-4);">
+          <button id="back-to-list" class="button outline">
             <span class="material-symbols-outlined" aria-hidden="true" style="font-size:18px">arrow_back</span>
-            Back to threads
+            Back to Messages
           </button>
         </nav>
-        <hgroup>
-          <h2 id="thread-title"></h2>
-          <p id="thread-meta"></p>
+        <hgroup style="margin-block-end: var(--space-6);">
+          <h2 id="thread-title" style="margin-block-end: 0;"></h2>
+          <p id="thread-meta" style="color: var(--color-on-surface-variant); margin-block: var(--space-2) 0;"></p>
         </hgroup>
-        <div id="thread-posts"></div>
+        <div id="thread-posts" style="margin-block-end: var(--space-8);"></div>
 
         <!-- Reply form -->
         <form id="reply-form">
-          <label for="reply-body">
-            Reply
-            <textarea id="reply-body" name="body" required rows="4"></textarea>
-          </label>
-          <button type="submit">Post reply</button>
+          <fieldset>
+            <legend style="font-size: 1rem; font-weight: 600; margin-block-end: var(--space-3);">Add Your Reply</legend>
+            <label for="reply-body">
+              Message
+              <textarea id="reply-body" name="body" required rows="4" placeholder="Type your reply..."></textarea>
+            </label>
+            <button type="submit" class="button">Post Reply</button>
+          </fieldset>
         </form>
-      </section>
+      </div>
+    </section>
 
-    </main>
+  </main>
 
-    {{> components/footer.hbs}}
-  </body>
+  {{> components/footer.hbs}}
+  <script type="module" src="/forum.js"></script>
+</body>
+
 </html>

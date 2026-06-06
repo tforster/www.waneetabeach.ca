@@ -25,6 +25,7 @@ test-results/
 ### Sensitive ###
 
 .env
+.env.test
 test.env
 *.pem
 

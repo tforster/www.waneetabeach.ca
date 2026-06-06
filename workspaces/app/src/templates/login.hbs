@@ -4,7 +4,7 @@
     {{> components/head.hbs}}
   </head>
   <body class="login-page">
-    {{> components/header.hbs}}
+    {{> components/header.hbs navLogin=true}}
     <main class="container login-container">
       <article>
         <hgroup>
@@ -21,7 +21,11 @@
             Password
             <input type="password" id="password" name="password" required autocomplete="current-password">
           </label>
-          <button type="submit">Sign in</button>
+          <button type="submit" class="button">Sign in</button>
+
+          <p style="margin-block-start: var(--space-4); text-align: center;">
+            <a href="/forgot-password">Forgot your password?</a>
+          </p>
         </form>
       </article>
     </main>

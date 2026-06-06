@@ -6,6 +6,7 @@
  */
 
 import { getCategories, getThread } from "./threads.js";
+import { sendEmail } from "../../shared/email.js";
 
 const TRUNCATE_AT = 500;
 
@@ -20,16 +21,17 @@ const TRUNCATE_AT = 500;
  * @param {string}   from
  * @param {string[]} bcc
  * @param {{ category: string, title: string, authorName: string, body: string, threadUrl: string }} params
- * @returns {{ from: string, bcc: string[], subject: string, text: string, html: string }}
+ * @returns {{ to: string, from: string, bcc: string[], subject: string, text: string, html: string }}
  */
 export function buildEmailPayload(from, bcc, { category, title, authorName, body, threadUrl }) {
   const snippet = body.length > TRUNCATE_AT ? body.slice(0, TRUNCATE_AT) + "\u2026" : body;
   const subject = `[Waneeta Beach] ${title}`;
   const text = `${authorName} posted in ${category} — ${title}:\n\n${snippet}\n\nRead the full thread: ${threadUrl}`;
-  const html = `<p><strong>${escHtml(authorName)}</strong> posted in <em>${escHtml(category)}</em>:</p>`
-             + `<p>${escHtml(snippet)}</p>`
-             + `<p><a href="${threadUrl}">Read the full thread: ${escHtml(title)}</a></p>`;
-  return { from, bcc, subject, text, html };
+  const html =
+    `<p><strong>${escHtml(authorName)}</strong> posted in <em>${escHtml(category)}</em>:</p>` +
+    `<p>${escHtml(snippet)}</p>` +
+    `<p><a href="${threadUrl}">Read the full thread: ${escHtml(title)}</a></p>`;
+  return { to: from, from, bcc, subject, text, html };
 }
 
 // ---------------------------------------------------------------------------
@@ -44,21 +46,19 @@ export function buildEmailPayload(from, bcc, { category, title, authorName, body
  * @returns {Promise<void>}
  */
 export async function notifyMembers(env, { threadId, category, title, authorName, body }) {
-  const res = await env.AUTH_SERVICE.fetch(
-    new Request("https://auth-service/api/auth/users", { method: "GET" })
-  );
+  const res = await env.AUTH_SERVICE.fetch(new Request("https://auth-service/api/auth/users", { method: "GET" }));
   if (!res.ok) return;
 
   /** @type {{ email: string }[]} */
   const users = await res.json();
-  const bcc   = users.map((u) => u.email).filter(Boolean);
+  const bcc = users.map((u) => u.email).filter(Boolean);
   if (bcc.length === 0) return;
 
   const threadUrl = `${env.BASE_URL}/forum#${threadId}`;
-  const payload   = buildEmailPayload(env.FROM_ADDRESS, bcc, { category, title, authorName, body, threadUrl });
+  const payload = buildEmailPayload(env.FROM_ADDRESS, bcc, { category, title, authorName, body, threadUrl });
 
   try {
-    await env.EMAIL.send(payload);
+    await sendEmail(env.EMAIL, payload);
   } catch (err) {
     console.error("[notify] EMAIL.send failed:", err);
   }
@@ -75,14 +75,14 @@ export async function notifyMembers(env, { threadId, category, title, authorName
  * @returns {Promise<void>}
  */
 export async function notifyNewThread(env, db, thread) {
-  const cats     = await getCategories(db);
-  const cat      = cats.find((c) => c.id === thread.category_id);
+  const cats = await getCategories(db);
+  const cat = cats.find((c) => c.id === thread.category_id);
   return notifyMembers(env, {
-    threadId:   thread.id,
-    category:   cat?.label ?? thread.category_id,
-    title:      thread.title,
+    threadId: thread.id,
+    category: cat?.label ?? thread.category_id,
+    title: thread.title,
     authorName: thread.author_name,
-    body:       thread.body,
+    body: thread.body,
   });
 }
 
@@ -95,14 +95,14 @@ export async function notifyNewThread(env, db, thread) {
  */
 export async function notifyNewPost(env, db, post, threadId) {
   const thread = await getThread(db, threadId);
-  const cats   = await getCategories(db);
-  const cat    = cats.find((c) => c.id === thread.category_id);
+  const cats = await getCategories(db);
+  const cat = cats.find((c) => c.id === thread.category_id);
   return notifyMembers(env, {
-    threadId:   thread.id,
-    category:   cat?.label ?? thread.category_id,
-    title:      thread.title,
+    threadId: thread.id,
+    category: cat?.label ?? thread.category_id,
+    title: thread.title,
     authorName: post.author_name,
-    body:       post.body,
+    body: post.body,
   });
 }
 

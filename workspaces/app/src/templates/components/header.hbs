@@ -3,11 +3,61 @@
     <ul>
       <li><a href="/" class="brand">Waneeta Beach</a></li>
     </ul>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/forum">Message Board</a></li>
-      <li><a href="/logout">Logout</a></li>
+    <ul class="nav-links">
+      <li><a href="/" {{#if navHome}}aria-current="page"{{/if}}>Home</a></li>
+      <li><a href="/about" {{#if navAbout}}aria-current="page"{{/if}}>About</a></li>
+      <li><a href="/forum" {{#if navForum}}aria-current="page"{{/if}}>Message Board</a></li>
+    </ul>
+    <ul class="nav-actions">
+      <li class="nav-auth-out">
+        <a
+          href="mailto:troy.forster@gmail.com?subject=request%20to%20register%20for%20waneetabeach.ca&body=Tell%20me%20who%20you%20are%20and%20where%20you%20live%20in%20Waneeta%20Beach"
+          target="_blank"
+          rel="noopener noreferrer">Register</a>
+        <span class="nav-auth-sep" aria-hidden="true">or</span>
+        <a href="/login" {{#if navLogin}}aria-current="page"{{/if}}>Login</a>
+      </li>
+      <li class="nav-auth-in" hidden>
+        <button type="button" class="nav-logout-btn">Logout</button>
+      </li>
+      <li class="nav-hamburger">
+        <button
+          type="button"
+          popovertarget="nav-mobile-menu"
+          aria-label="Open navigation menu">
+          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        </button>
+      </li>
     </ul>
   </nav>
+
+  <div id="nav-mobile-menu" class="nav-mobile-menu" popover>
+    <div class="nav-mobile-header">
+      <a href="/" class="brand">Waneeta Beach</a>
+      <button
+        type="button"
+        class="nav-mobile-close"
+        popovertarget="nav-mobile-menu"
+        popovertargetaction="hide"
+        aria-label="Close navigation menu">
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      </button>
+    </div>
+    <ul>
+      <li><a href="/" {{#if navHome}}aria-current="page"{{/if}}>Home</a></li>
+      <li><a href="/about" {{#if navAbout}}aria-current="page"{{/if}}>About</a></li>
+      <li><a href="/forum" {{#if navForum}}aria-current="page"{{/if}}>Message Board</a></li>
+      <li class="nav-auth-out">
+        <a
+          href="mailto:troy.forster@gmail.com?subject=request%20to%20register%20for%20waneetabeach.ca&body=Tell%20me%20who%20you%20are%20and%20where%20you%20live%20in%20Waneeta%20Beach"
+          target="_blank"
+          rel="noopener noreferrer">Register</a>
+        <span class="nav-auth-sep" aria-hidden="true">or</span>
+        <a href="/login" {{#if navLogin}}aria-current="page"{{/if}}>Login</a>
+      </li>
+      <li class="nav-auth-in" hidden>
+        <button type="button" class="nav-logout-btn">Logout</button>
+      </li>
+    </ul>
+  </div>
 </header>

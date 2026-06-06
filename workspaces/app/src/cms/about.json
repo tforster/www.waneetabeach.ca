@@ -1,0 +1,63 @@
+{
+  "uri": "/about.html",
+  "title": "About",
+  "description": "Learn about Waneeta Beach — its history, geography, and natural environment on the north shore of Lake Erie in Malahide Township, Ontario.",
+  "keywords": ["Waneeta Beach", "Lake Erie", "Malahide", "Elgin County", "Ontario", "cottage community", "history", "Port Bruce"],
+  "webProducerKey": "about",
+
+  "lede": "A small private community on the north shore of Lake Erie, with quiet roads, deep roots, and good neighbours.",
+
+  "history": "The land surrounding what is now Waneeta Beach was part of Malahide Township, itself surveyed and settled in 1810 under the direction of Colonel Thomas Talbot — a land grant administrator who named the township after Malahide Castle in Ireland, his ancestral home. European settlers arrived along the Lake Erie shoreline in the early decades of the nineteenth century, drawn by the fertile farmland inland and the natural harbour formed where Catfish Creek meets the lake. That harbour — originally called Catfish Harbour — was visited as early as August 24, 1761 by Sir William Johnson, who stopped to repair damaged boats while travelling to Detroit with a fleet of eleven boats and two canoes.\n\nThe port grew into a place of genuine commercial importance between 1840 and 1880. In 1851 it was renamed Port Bruce in honour of James Bruce, the eighth Earl of Elgin and Kincardine, then Governor General of Canada. Grain and lumber moved through its docks in volume — schooners loading cedar shakes, barrel staves, and wheat bound for markets across Lake Erie. The shoreline strip to the west of the harbour, where Waneeta Beach now sits, developed more quietly: seasonal cottages replacing working farmland as the railway era gradually shifted commerce inland and the lake shore became valued for rest rather than trade.\n\nThe community has always lived close to the water's terms. In September 1976, higher-than-normal lake levels severely damaged the cottage area at Waneeta Beach; one cottage was torn down and the future of others was in doubt — a reminder, recorded in the *St. Thomas Times-Journal*, that the relationship between this shoreline and its residents has never been entirely settled.",
+
+  "geographyProse": "Waneeta Beach sits approximately 1.2 kilometres west of Port Bruce along the Lake Erie shoreline, within Malahide Township in Elgin County, Ontario. The community is under the jurisdiction of the Catfish Creek Conservation Authority (CCCA), which manages roughly 1.2 kilometres of shoreline in this reach — a sandy beach backed by eroding bluffs, with private steel sheet pile walls protecting the western residential properties.\n\nThe bluffs west of Waneeta Beach Road are an active erosion feature. Lake Erie's north shore is a dynamic, retreating coastline, and the Elgin County Shoreline Management Plan (2015) identified several structures within the 3:1 stable slope setback in this area. Flood risk is also present: during regional flow conditions, Catfish Creek can spill downstream of the Imperial Road Bridge and overtop Waneeta Beach Drive. These are not abstract hazards — they are part of the landscape's character and the reason residents stay engaged with conservation authority updates.",
+
+  "facts": [
+    { "label": "County",                  "value": "Elgin County" },
+    { "label": "Municipality",            "value": "Township of Malahide" },
+    { "label": "Province",                "value": "Ontario, Canada" },
+    { "label": "Lake",                    "value": "Lake Erie (north shore)" },
+    { "label": "Nearest village",         "value": "Port Bruce (~1.2 km east)" },
+    { "label": "Nearest town",            "value": "Aylmer (~22 km north)" },
+    { "label": "Coordinates",             "value": "42.657°N, 81.021°W" },
+    { "label": "Postal code",             "value": "N0L 2H0" },
+    { "label": "Conservation authority",  "value": "Catfish Creek Conservation Authority" },
+    { "label": "Shoreline type",          "value": "Sandy beach, eroding bluffs" }
+  ],
+
+  "map": {
+    "bbox": "-81.055,42.635,-80.985,42.675",
+    "markerLat": 42.6569,
+    "markerLon": -81.0205,
+    "title": "Waneeta Beach and Port Bruce on the north shore of Lake Erie"
+  },
+
+  "environment": "Lake Erie is the shallowest and warmest of the Great Lakes — the reason this stretch of Ontario shoreline became cottage country in the first place. At Waneeta Beach the lake arrives without ceremony: a sandy shore that shifts with each season, calm enough in July for children to wade far out, and dramatically different by November when the westerlies push long grey swells against the bluffs. The beach faces south-southwest, which means long summer evenings watching the sun drop behind the water — one of the small daily rewards of living here.\n\nThe surrounding landscape supports a striking range of wildlife. White-tailed deer move through the properties year-round, and cottagers are well acquainted with rabbits, raccoons, red fox, coyotes, opossums, and the occasional skunk. Snapping turtles are a familiar presence near the water's edge and along the road in early summer when females move inland to nest — drivers slow down for them without being asked. The bird life is exceptional: warblers, herons, cormorants, and shorebirds pass through on migration, and in recent years the bald eagle has re-established itself along this section of Lake Erie in numbers that would have seemed remarkable a generation ago.",
+
+  "wildlifePhotos": [
+    {
+      "src": "/files/large-snapping-turtle.jpg",
+      "alt": "A large snapping turtle on the ground at Waneeta Beach",
+      "width": 3024,
+      "height": 4032,
+      "caption": "Snapping turtle"
+    },
+    {
+      "src": "/files/young-buck.jpg",
+      "alt": "A young white-tailed buck at Waneeta Beach",
+      "width": 1191,
+      "height": 1588,
+      "caption": "Young white-tailed buck"
+    }
+  ],
+
+  "panorama": {
+    "src": "/files/winter-panorama.jpg",
+    "alt": "Winter panorama looking across the Lake Erie shoreline at Waneeta Beach",
+    "width": 4676,
+    "height": 1643
+  },
+
+  "sources": "Historical information sourced from the [Elgin County Archives](https://www.elgincountyarchives.ca/) and the *Sims History of Elgin County, Volume 2*. Shoreline and flood hazard data from the [Elgin County Shoreline Management Plan (2015)](https://www.kettlecreekconservation.on.ca/wp-content/uploads/2022/04/4_ElginCoSMP-2015.10.13.pdf) and the [CCCA Port Bruce Floodplain Mapping Report (2024)](https://www.catfishcreek.ca/wp-content/uploads/2024/05/2882-021-CCCA-Port-Bruce-Riverine-and-Coastal-Floodplain-Mapping-2024_w_app.pdf). Township information from [Wikipedia — Malahide, Ontario](https://en.wikipedia.org/wiki/Malahide,_Ontario).",
+
+  "ctaText": "Do you have memories, photographs, or documents that belong in this record? Residents past and present are warmly invited to share what they know — stories, old photos, dates, names. Head to the [Message Board](/forum) to start the conversation."
+}
