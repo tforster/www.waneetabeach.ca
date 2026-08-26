@@ -11,7 +11,6 @@ Understanding-oriented documentation that provides context, background, and deep
 - **[Product Requirements Document](./prd.md)** — Goals, audience, scope, functional requirements, and technology decisions
 - **[Architecture Overview](./architecture.md)** — Technology choices, build pipeline, deployment architecture, and design rationale
 - **[Authentication Architecture](./authentication.md)** — Better Auth integration, session lifecycle, and design decisions
-- **[Architecture Decision Records](./adr.md)** — Historical record of significant architectural decisions and their rationale
 
 ---
 
