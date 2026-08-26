@@ -11,6 +11,10 @@ Understanding-oriented documentation that provides context, background, and deep
 - **[Product Requirements Document](./prd.md)** — Goals, audience, scope, functional requirements, and technology decisions
 - **[Architecture Overview](./architecture.md)** — Technology choices, build pipeline, deployment architecture, and design rationale
 - **[Authentication Architecture](./authentication.md)** — Better Auth integration, session lifecycle, and design decisions
+- **[EmDash Content Model and Deployment vs. Current Stack](./emdash-content-model-and-deployment.md)** — How EmDash's Portable Text content model and Cloudflare deployment compare to this repo's stack
+- **[EmDash Auth and User Model](./emdash-auth-model.md)** — Whether EmDash's built-in auth fits a small invite-only community, and what replacing Better Auth would require
+- **[EmDash Plugin Sandbox Capabilities](./emdash-plugin-sandbox.md)** — What a sandboxed EmDash plugin can and cannot do
+- **[Message Board Plugin Route Auth Prototype](./emdash-plugin-route-auth-prototype.md)** — Hands-on prototype confirming member-only gating on a sandboxed plugin route
 
 ---
 
