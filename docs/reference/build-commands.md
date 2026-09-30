@@ -17,8 +17,19 @@ A complete reference for all build and development commands available in this pr
 | `npm run build watch` | `node devops/build.js watch` | Build and watch for changes |
 | `npm run dev` | `node devops/dev.js` | Start all services in a Tmux session |
 | `npm run dev app` | `node devops/dev.js app` | Start the `app` service only |
-| `npm run deploy app stage` | `devops/deploy.sh app stage` | Deploy to stage |
-| `npm run deploy app prod` | `devops/deploy.sh app prod` | Deploy to production |
+| `npm run serve` | `./devops/serve.sh` | Start the auth and API workers under `cf dev` (ports 8788 and 8787) |
+| `npm run migrate:local` | `npm run migrate:local -w …` | Apply pending D1 migrations locally for auth, then API |
+| `npm run deploy` | `npm run build && npm run deploy -w …` | Build the site, then deploy auth, then API, with `cf deploy` |
+
+Each worker workspace (`workspaces/api`, `workspaces/auth`) has its own scripts. Run them with `npm run <script> -w workspaces/<worker>`:
+
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| `dev` | `cf dev` | Start the worker with Vite and `@cloudflare/vite-plugin` |
+| `deploy` | `cf deploy` | Build and deploy the worker |
+| `migrate:local` | `cf d1 migrations apply <id> --local --persist-to .cloudflare/state` | Apply pending D1 migrations to the local database the dev server uses |
+
+See [How to Deploy the Worker Ecosystem](../how-to-guides/deploy-workers.md) for the full workflow.
 
 ## 2. devops/build.js
 

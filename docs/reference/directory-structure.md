@@ -6,15 +6,19 @@ A reference map of every significant folder and file in the `www.waneetabeach.ca
 
 - [1. Root](#1-root)
 - [2. devops/](#2-devops)
-- [3. workspaces/app/](#3-workspacesapp)
-- [4. docs/](#4-docs)
+- [3. migrations/](#3-migrations)
+- [4. tests/](#4-tests)
+- [5. workspaces/app/](#5-workspacesapp)
+- [6. workspaces/api/](#6-workspacesapi)
+- [7. docs/](#7-docs)
 
 ## 1. Root
 
 | Path | Purpose |
 | :--- | :--- |
 | `package.json` | Root workspace manifest; declares npm workspaces and shared devDependencies |
-| `wrangler.json` | Cloudflare Worker configuration — entry point, D1 binding, Workers Assets |
+| `workspaces/*/cloudflare.config.ts` | `cf` Worker configuration — entry point, bindings, Workers Assets |
+| `workspaces/*/vite.config.js` | Vite dev server and build settings for each worker — ports, inspector port, allowed hosts |
 | `eslint.config.js` | Flat ESLint configuration (JS, HTML, CSS, JSON, YAML, Markdown) |
 | `.gitignore` | Git ignore rules |
 
@@ -23,7 +27,7 @@ A reference map of every significant folder and file in the `www.waneetabeach.ca
 | Path | Purpose |
 | :--- | :--- |
 | `devops/build.js` | Root build orchestrator — image optimisation then Gilbert static site compile |
-| `devops/serve.sh` | Development convenience script — runs `wrangler dev` |
+| `devops/serve.sh` | Development convenience script — runs `cf dev` for the auth and API workers |
 
 ## 3. migrations/
 

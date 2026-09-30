@@ -7,5 +7,8 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [cloudflare({ types: { generate: false } })],
+  // Fixed ports keep auth BASE_URL and the VS Code attach configs in .vscode/launch.json valid
+  // api reaches this Worker via its service binding using the placeholder host `auth-service`, which Vite blocks by default
+  server: { port: 8788, strictPort: true, allowedHosts: ["auth-service"] },
+  plugins: [cloudflare({ inspectorPort: 9229, types: { generate: false } })],
 });

@@ -20,7 +20,7 @@ import { notifyNewThread, notifyNewPost } from "./notify.js";
 
 /**
  * Shared error handler for all uncaught route exceptions.
- * Logs to wrangler output and returns a consistent JSON error response.
+ * Logs to dev server output and returns a consistent JSON error response.
  *
  * @param {unknown} err
  * @param {import('itty-router').IRequest} req

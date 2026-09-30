@@ -1,26 +1,19 @@
 #!/usr/bin/env bash
-# Start both Workers under wrangler dev.
+# Start both Workers under cf dev (Vite + @cloudflare/vite-plugin).
 # VS Code can attach its debugger to the inspector ports once this script is running.
+# Ports are fixed in each workspace's vite.config.js.
 #
-#   Auth Worker  →  wrangler :8788  |  inspector :9229
-#   API Worker   →  wrangler :8787  |  inspector :9230
+#   Auth Worker  →  cf dev :8788  |  inspector :9229
+#   API Worker   →  cf dev :8787  |  inspector :9230
 #
 # Usage:  ./devops/serve.sh
 
 set -euo pipefail
 
-trap 'echo "Stopping..."; kill $(jobs -p) 2>/dev/null; exit' SIGINT SIGTERM EXIT
+# Kill the whole process group: cf spawns Vite, which spawns workerd, and killing only cf orphans them
+trap 'echo "Stopping..."; trap - EXIT; kill 0 2>/dev/null; exit' SIGINT SIGTERM EXIT
 
-npx wrangler dev \
-  --config workspaces/auth/wrangler.json \
-  --port 8788 \
-  --inspector-port 9229 \
-  --no-show-interactive-dev-session &
-
-npx wrangler dev \
-  --config workspaces/api/wrangler.json \
-  --port 8787 \
-  --inspector-port 9230 \
-  --no-show-interactive-dev-session &
+npm run dev -w workspaces/auth &
+npm run dev -w workspaces/api &
 
 wait

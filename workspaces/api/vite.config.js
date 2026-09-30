@@ -9,5 +9,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   publicDir: "../app/dist",
-  plugins: [cloudflare({ types: { generate: false } })],
+  // Fixed ports keep auth BASE_URL and the VS Code attach configs in .vscode/launch.json valid
+  server: { port: 8787, strictPort: true },
+  plugins: [cloudflare({ inspectorPort: 9230, types: { generate: false } })],
 });

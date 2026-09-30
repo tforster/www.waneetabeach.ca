@@ -17,7 +17,7 @@ export default defineConfig({
       FROM_ADDRESS: bindings.text("no-reply@waneetabeach.ca"),
       DB: bindings.d1({
         name: "waneetabeach",
-        id: "local-dev-placeholder",
+        id: "00000000-0000-4000-8000-000000000001",
       }),
       EMAIL: bindings.sendEmail({
         allowedSenderAddresses: ["no-reply@waneetabeach.ca"],

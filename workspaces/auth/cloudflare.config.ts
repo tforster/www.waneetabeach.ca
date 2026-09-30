@@ -17,7 +17,7 @@ export default defineConfig({
       AUTH_SECRET: bindings.secret(),
       AUTH_DB: bindings.d1({
         name: "waneetabeach-auth",
-        id: "local-dev-placeholder",
+        id: "00000000-0000-4000-8000-000000000002",
       }),
     },
   },
