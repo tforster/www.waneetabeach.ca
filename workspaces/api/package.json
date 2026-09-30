@@ -6,7 +6,7 @@
   "main": "./src/index.js",
   "scripts": {
     "dev": "cf dev",
-    "deploy": "cf deploy",
+    "deploy": "cf deploy --mode production",
     "migrate:local": "cf d1 migrations apply 00000000-0000-4000-8000-000000000001 --local --persist-to .cloudflare/state"
   },
   "devDependencies": {

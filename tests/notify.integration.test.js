@@ -7,7 +7,7 @@
  * 1. Set environment variables:
  *    - CLOUDFLARE_ACCOUNT_ID: Your Cloudflare account ID
  *    - CLOUDFLARE_API_TOKEN: Your Cloudflare API token with Email Routing scope
- *    - TEST_EMAIL_FROM: Sender address (must match wrangler.json allowed_sender_addresses)
+ *    - TEST_EMAIL_FROM: Sender address (must match allowedSenderAddresses in cloudflare.config.ts)
  *    - TEST_EMAIL_TO: Recipient address (default: troy.forster@gmail.com)
  *
  * 2. Optional: Create .env.test file in workspace root:

@@ -8,7 +8,7 @@ This is a deliberate early adoption. Vite adds nothing this project needs — Gi
 
 ## Consequences
 
-- Worker settings and bindings live in `cloudflare.config.ts`; `wrangler.json` is gone. `cf` only discovers the `.ts` file name, which is acceptable for configuration (application code stays JavaScript)
+- Worker settings and bindings live in `cloudflare.config.ts`; `wrangler.json` is gone. The former Wrangler `production` environment is selected with `--mode production`, which the `deploy` scripts pass. `cf` only discovers the `.ts` file name, which is acceptable for configuration (application code stays JavaScript)
 - Each worker workspace declares `cf`, `vite` and `@cloudflare/vite-plugin` in its own `package.json`. `cf` does not resolve packages hoisted to the root `node_modules`
 - `node_modules` is about 45 MB larger than with `cf` on Wrangler (537 MB vs 492 MB); Vite itself, with Rolldown and Lightning CSS, accounts for about 37 MB
 - `cf d1` commands accept database IDs only, so local development uses fixed placeholder UUIDs, and local commands need `--persist-to .cloudflare/state` to reach the dev server's state

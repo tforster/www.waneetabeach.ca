@@ -17,7 +17,7 @@ This guide covers both local development and remote (production) deployment. It 
     - [4.1.1. First-time Setup](#411-first-time-setup)
     - [4.1.2. Apply Migrations](#412-apply-migrations)
     - [4.1.3. Deploy the Worker](#413-deploy-the-worker)
-    - [4.1.4. Set the BASE_URL and AUTH_SECRET Secrets](#414-set-the-base_url-and-auth_secret-secrets)
+    - [4.1.4. Set the AUTH_SECRET Secret](#414-set-the-auth_secret-secret)
   - [4.2. API Worker](#42-api-worker)
     - [4.2.1. Set up Email Sending (first-time only)](#421-set-up-email-sending-first-time-only)
     - [4.2.2. First-time Setup](#422-first-time-setup)
@@ -128,7 +128,9 @@ Use `cf d1 raw` for local SQL — `cf d1 query` has no local equivalent.
 
 Remote deployment publishes workers to Cloudflare and applies migrations to live D1 databases. Follow the steps in the same order as the ecosystem table in section 2.
 
-Once first-time setup is complete for both workers, `npm run deploy` builds the static site and deploys auth then API in one step.
+Production settings are selected with `cf`'s `--mode production` flag, which each workspace's `deploy` script passes. In `cloudflare.config.ts`, `ctx.mode === "production"` switches the D1 database IDs and, for the auth worker, `BASE_URL` to `https://waneetabeach.ca`. Every other mode — including `cf dev` — uses the local settings.
+
+`npm run deploy` builds the static site and deploys auth then API in one step.
 
 ### 4.1. Auth Worker
 
@@ -140,12 +142,12 @@ Create the D1 database:
 npx cf d1 create --name waneetabeach-auth
 ```
 
-Copy the database `uuid` from the output and replace the placeholder `id` in `workspaces/auth/cloudflare.config.ts`, and the ID in the `migrate:local` script in `workspaces/auth/package.json`:
+The production database already exists. When recreating it, copy the database `uuid` from the output into the production branch of the `id` in `workspaces/auth/cloudflare.config.ts`:
 
 ```ts
 AUTH_DB: bindings.d1({
   name: "waneetabeach-auth",
-  id: "<paste-id-here>",
+  id: isProduction ? "<paste-id-here>" : "00000000-0000-4000-8000-000000000002",
 }),
 ```
 
@@ -155,7 +157,7 @@ Commit the updated files so all contributors share the same database ID.
 
 ```bash
 cd workspaces/auth
-npx cf d1 migrations apply <auth-database-id>
+npx cf d1 migrations apply 493bbb5a-9da4-4baa-bf8f-09c037902386
 ```
 
 #### 4.1.3. Deploy the Worker
@@ -164,16 +166,11 @@ npx cf d1 migrations apply <auth-database-id>
 npm run deploy -w workspaces/auth
 ```
 
-#### 4.1.4. Set the BASE_URL and AUTH_SECRET Secrets
+#### 4.1.4. Set the AUTH_SECRET Secret
 
-Better Auth uses `BASE_URL` to construct callback and redirect URLs. Set it to the API worker's public origin — not the auth worker's, since the auth worker has no public URL:
+Better Auth uses `BASE_URL` to construct callback and redirect URLs. It is the API worker's public origin — not the auth worker's, since the auth worker has no public URL — and is set per mode in `cloudflare.config.ts`, so it needs no secret.
 
-```bash
-npx cf workers secrets update BASE_URL --worker waneetabeach-auth --type secret_text \
-  --text "https://waneetabeach-ca.your-subdomain.workers.dev"
-```
-
-Also set the auth secret, used by Better Auth to sign sessions and tokens. Use a strong random value of at least 32 characters. Reading it into a variable keeps it out of your shell history:
+Set the auth secret, used by Better Auth to sign sessions and tokens. Use a strong random value of at least 32 characters. Reading it into a variable keeps it out of your shell history:
 
 ```bash
 read -rs AuthSecret
@@ -181,7 +178,6 @@ npx cf workers secrets update AUTH_SECRET --worker waneetabeach-auth --type secr
 unset AuthSecret
 ```
 
-Secrets take precedence over the `bindings.text()` values in `cloudflare.config.ts`, which are for local dev only.
 
 ### 4.2. API Worker
 
@@ -208,12 +204,12 @@ Create the D1 database:
 npx cf d1 create --name waneetabeach
 ```
 
-Copy the database `uuid` from the output and replace the placeholder `id` in `workspaces/api/cloudflare.config.ts`, and the ID in the `migrate:local` script in `workspaces/api/package.json`:
+The production database already exists. When recreating it, copy the database `uuid` from the output into the production branch of the `id` in `workspaces/api/cloudflare.config.ts`:
 
 ```ts
 DB: bindings.d1({
   name: "waneetabeach",
-  id: "<paste-id-here>",
+  id: isProduction ? "<paste-id-here>" : "00000000-0000-4000-8000-000000000001",
 }),
 ```
 
@@ -223,7 +219,7 @@ Commit the updated files.
 
 ```bash
 cd workspaces/api
-npx cf d1 migrations apply <api-database-id>
+npx cf d1 migrations apply 380ecce7-af1b-423d-b092-02b21c8f51f8
 ```
 
 #### 4.2.4. Deploy the Worker
@@ -242,17 +238,23 @@ Both workers must be deployed before seeding. Sign-up goes through the API worke
 **Step 1 — Register the user:**
 
 ```bash
-curl -s -X POST https://<your-api-worker-url>/api/auth/sign-up/email \
-  -H "Origin: https://<your-api-worker-url>" \
+curl -s -X POST https://waneetabeach.ca/api/auth/sign-up/email \
+  -H "Origin: https://waneetabeach.ca" \
   -H "Content-Type: application/json" \
-  -d '{"name":"Admin","email":"admin@example.com","password":"<password>"}'
+  -d '{"name":"Admin","email":"troy.forster@gmail.com","password":"<password>"}'
 ```
 
 **Step 2 — Promote to admin:**
 
 ```bash
-npx cf d1 query <auth-database-id> \
-  --sql "UPDATE \"user\" SET role = 'admin' WHERE email = 'admin@example.com'"
+npx cf d1 query 493bbb5a-9da4-4baa-bf8f-09c037902386 \
+  --sql "UPDATE \"user\" SET role = 'admin' WHERE email = 'troy.forster@gmail.com'"
+```
+
+**Step 3 — Verify:**
+
+```bash
+npx cf d1 query 493bbb5a-9da4-4baa-bf8f-09c037902386 --sql "SELECT email, role FROM \"user\""
 ```
 
 ## 5. Verification
@@ -283,15 +285,15 @@ Expected responses: `{ "status": "ok" }` and `401 Unauthorized`.
 Confirm auth schema:
 
 ```bash
-npx cf d1 query <auth-database-id> \
+npx cf d1 query 493bbb5a-9da4-4baa-bf8f-09c037902386 \
   --sql "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
 ```
 
 Confirm the API worker is live:
 
 ```bash
-curl https://<your-api-worker-url>/api/health
-curl https://<your-api-worker-url>/api/auth/session
+curl https://waneetabeach.ca/api/health
+curl https://waneetabeach.ca/api/auth/session
 ```
 
 Expected responses are the same as local.
