@@ -173,9 +173,7 @@ Better Auth uses `BASE_URL` to construct callback and redirect URLs. It is the A
 Set the auth secret, used by Better Auth to sign sessions and tokens. Use a strong random value of at least 32 characters. Reading it into a variable keeps it out of your shell history:
 
 ```bash
-read -rs AuthSecret
-npx cf workers secrets update AUTH_SECRET --worker waneetabeach-auth --type secret_text --text "$AuthSecret"
-unset AuthSecret
+npx cf workers secrets update AUTH_SECRET --worker waneetabeach-auth --type secret_text
 ```
 
 
