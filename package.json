@@ -63,5 +63,9 @@
     "better-auth": "^1.6.10",
     "itty-router": "^5.0.23",
     "marked": "^18.0.4"
+  },
+  "overrides": {
+    "miniflare": "5.20260930.0-alpha",
+    "workerd": "1.20260930.2"
   }
 }
