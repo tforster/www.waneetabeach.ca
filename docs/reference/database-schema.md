@@ -1,6 +1,6 @@
 # Database Schema Reference <!-- omit in toc -->
 
-D1 (SQLite) schema for the Waneeta Beach members portal. All migrations live under `migrations/` and are applied via Wrangler.
+D1 (SQLite) schema for the Waneeta Beach members portal. All migrations live under `migrations/` and are applied via the `cf` CLI.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -89,27 +89,16 @@ Generated and managed by Better Auth. See [Better Auth D1 documentation](https:/
 | `migrations/0003_better_auth.sql` | Creates Better Auth `user`, `session`, `account`, `verification` tables |
 | `migrations/0004_admin_plugin.sql` | Adds `role`, `banned`, `banReason`, `banExpires`, `impersonatedBy` columns |
 
-Migration files use sequential numeric prefixes. Wrangler tracks which migrations have been applied in the `d1_migrations` table.
+Migration files use sequential numeric prefixes. `cf` tracks which migrations have been applied in the `d1_migrations` table, using the same format as Wrangler.
 
 ## 4. Applying migrations locally
 
-Create the local D1 database and apply all pending migrations:
+Apply all pending migrations to the local databases:
 
 ```bash
-npx wrangler d1 create waneetabeach
-npx wrangler d1 migrations apply waneetabeach --local
+npm run migrate:local
 ```
 
-Verify the schema was applied:
-
-```bash
-npx wrangler d1 execute waneetabeach --local --command "SELECT name FROM sqlite_master WHERE type='table'"
-```
-
-Verify the seed categories:
-
-```bash
-npx wrangler d1 execute waneetabeach --local --command "SELECT * FROM categories ORDER BY sort_order"
-```
+See [How to Deploy the Worker Ecosystem](../how-to-guides/deploy-workers.md) for remote migrations and for querying the local databases.
 
 [← Back to Reference](./README.md)

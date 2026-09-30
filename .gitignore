@@ -1,6 +1,7 @@
 ### Project ###
 # dist
 .wrangler
+.cloudflare
 .dev.vars
 scripts/serve/openapi.json
 workspaces/**/config.js

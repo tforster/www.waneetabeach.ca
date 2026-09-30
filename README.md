@@ -24,8 +24,8 @@ These instructions will give you a copy of the project up and running on your lo
 ### Prerequisites
 
 - [Node.js v24+](https://nodejs.org/) and npm v10+
-- [Cloudflare Wrangler](https://github.com/cloudflare/workers-sdk) — installed as a project
-  devDependency via `npm install`
+- [Cloudflare `cf` CLI](https://github.com/cloudflare/cf) and Vite — installed as worker workspace
+  devDependencies via `npm install`
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) — required for running
   PlantUML and other utilities
 - [Git v2.34+](https://git-scm.com/)
@@ -58,7 +58,9 @@ Environment configuration is generated — not static. Run `node devops/config.j
 Several npm scripts are provided for common tasks:
 
 - `npm run build` — Build the static site into `dist/`
-- `npm run serve` — Start the full development stack
+- `npm run serve` — Start the auth and API workers under `cf dev`
+- `npm run migrate:local` — Apply pending D1 migrations locally
+- `npm run deploy` — Build the site and deploy both workers
 - `npm run dev app` — Start only the `app` service in the foreground
 - `npm test` — Run all tests
 
