@@ -26,7 +26,7 @@ Each worker workspace (`workspaces/api`, `workspaces/auth`) has its own scripts.
 | Script | Command | Description |
 | :--- | :--- | :--- |
 | `dev` | `cf dev` | Start the worker with Vite and `@cloudflare/vite-plugin` |
-| `deploy` | `cf deploy` | Build and deploy the worker |
+| `deploy` | `cf deploy --mode production` | Build and deploy the worker with production bindings |
 | `migrate:local` | `cf d1 migrations apply <id> --local --persist-to .cloudflare/state` | Apply pending D1 migrations to the local database the dev server uses |
 
 See [How to Deploy the Worker Ecosystem](../how-to-guides/deploy-workers.md) for the full workflow.
