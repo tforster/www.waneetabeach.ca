@@ -10,8 +10,8 @@
     "migrate:local": "cf d1 migrations apply 00000000-0000-4000-8000-000000000001 --local --persist-to .cloudflare/state"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^2.0.0-beta.sha-ad79608dd",
-    "cf": "^1.0.0-beta.7",
+    "@cloudflare/vite-plugin": "^2.0.0-beta.v.8",
+    "cf": "^1.0.0-beta.26",
     "vite": "^8.3.1"
   }
 }
